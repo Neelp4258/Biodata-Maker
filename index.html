@@ -20,14 +20,15 @@
         }
 
         :root {
-            --primary-color: #2563eb;
-            --secondary-color: #1e40af;
-            --accent-color: #f59e0b;
-            --dark-color: #1e293b;
+            --primary-color: #6366f1;
+            --secondary-color: #4f46e5;
+            --accent-color: #10b981;
+            --dark-color: #0f172a;
             --light-color: #f8fafc;
-            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            --gradient-hero: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            --gradient-primary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            --gradient-secondary: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            --gradient-hero: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+            --gradient-accent: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
         }
 
         body {
@@ -108,7 +109,7 @@
             background: var(--gradient-hero);
             position: relative;
             overflow: hidden;
-            padding: 100px 0 80px;
+            padding: 120px 0 100px;
         }
 
         .hero-section::before {
@@ -118,9 +119,19 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,255,255,0.1)" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,165.3C1248,171,1344,149,1392,138.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') no-repeat bottom;
-            background-size: cover;
-            opacity: 0.3;
+            background: radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 50%);
+            opacity: 1;
+        }
+
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background: linear-gradient(180deg, transparent 0%, #ffffff 100%);
         }
 
         .hero-content {
@@ -243,7 +254,33 @@
             margin: 0 auto 1.5rem;
             font-size: 2rem;
             color: white;
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 15px 40px rgba(99, 102, 241, 0.6);
+        }
+
+        .feature-card:nth-child(2) .feature-icon {
+            background: var(--gradient-secondary);
+        }
+
+        .feature-card:nth-child(3) .feature-icon {
+            background: var(--gradient-accent);
+        }
+
+        .feature-card:nth-child(4) .feature-icon {
+            background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
+        }
+
+        .feature-card:nth-child(5) .feature-icon {
+            background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
+        }
+
+        .feature-card:nth-child(6) .feature-icon {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
         }
 
         .feature-card h3 {
@@ -354,31 +391,60 @@
         /* Stats Section */
         .stats-section {
             padding: 80px 0;
-            background: var(--gradient-primary);
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
             color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stats-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="10" cy="10" r="3" fill="rgba(255,255,255,0.1)"/><circle cx="90" cy="90" r="3" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: 100px 100px;
         }
 
         .stat-card {
             text-align: center;
             padding: 2rem;
+            position: relative;
+            z-index: 2;
         }
 
         .stat-number {
-            font-size: 3rem;
+            font-size: 3.5rem;
             font-weight: 800;
             margin-bottom: 0.5rem;
+            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
 
         .stat-label {
             font-size: 1.1rem;
-            opacity: 0.9;
+            opacity: 0.95;
+            font-weight: 500;
+            letter-spacing: 0.5px;
         }
 
         /* Footer */
         .footer {
             padding: 60px 0 30px;
-            background: #1e293b;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             color: white;
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, #6366f1 50%, transparent 100%);
         }
 
         .footer h5 {
@@ -534,9 +600,23 @@
                     </div>
                 </div>
                 <div class="col-lg-6 hero-image text-center mt-5 mt-lg-0">
-                    <div style="background: white; border-radius: 20px; padding: 2rem; box-shadow: 0 20px 60px rgba(0,0,0,0.2);">
-                        <i class="fas fa-file-alt" style="font-size: 150px; color: #667eea;"></i>
-                        <p style="margin-top: 1rem; color: #667eea; font-weight: 600;">Premium Templates</p>
+                    <div style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(20px); border-radius: 30px; padding: 3rem; box-shadow: 0 25px 70px rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.2);">
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin-bottom: 2rem;">
+                            <div style="background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); height: 180px; border-radius: 15px; box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4); display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-file-alt" style="font-size: 60px; color: white;"></i>
+                            </div>
+                            <div style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); height: 180px; border-radius: 15px; box-shadow: 0 10px 30px rgba(16, 185, 129, 0.4); display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-briefcase" style="font-size: 60px; color: white;"></i>
+                            </div>
+                            <div style="background: linear-gradient(135deg, #f59e0b 0%, #f97316 100%); height: 180px; border-radius: 15px; box-shadow: 0 10px 30px rgba(245, 158, 11, 0.4); display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-palette" style="font-size: 60px; color: white;"></i>
+                            </div>
+                            <div style="background: linear-gradient(135deg, #ec4899 0%, #be185d 100%); height: 180px; border-radius: 15px; box-shadow: 0 10px 30px rgba(236, 72, 153, 0.4); display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-download" style="font-size: 60px; color: white;"></i>
+                            </div>
+                        </div>
+                        <p style="margin-top: 1rem; color: white; font-weight: 600; font-size: 1.2rem;">16+ Premium Templates</p>
+                        <p style="color: rgba(255,255,255,0.8); font-size: 0.9rem;">Professional • Modern • Customizable</p>
                     </div>
                 </div>
             </div>
@@ -549,13 +629,13 @@
             <div class="row">
                 <div class="col-md-3 col-6">
                     <div class="stat-card">
-                        <div class="stat-number">10+</div>
+                        <div class="stat-number">16+</div>
                         <div class="stat-label">Premium Templates</div>
                     </div>
                 </div>
                 <div class="col-md-3 col-6">
                     <div class="stat-card">
-                        <div class="stat-number">5K+</div>
+                        <div class="stat-number">10K+</div>
                         <div class="stat-label">Happy Users</div>
                     </div>
                 </div>
@@ -567,7 +647,7 @@
                 </div>
                 <div class="col-md-3 col-6">
                     <div class="stat-card">
-                        <div class="stat-number">A4</div>
+                        <div class="stat-number">PDF</div>
                         <div class="stat-label">Perfect Print</div>
                     </div>
                 </div>
@@ -579,7 +659,7 @@
     <section id="features" class="features-section">
         <div class="container">
             <h2 class="section-title">Why Choose BiodataPro?</h2>
-            <p class="section-subtitle">Everything you need to create a professional biodata</p>
+            <p class="section-subtitle">Everything you need to create a stunning professional document in minutes</p>
 
             <div class="row g-4">
                 <div class="col-lg-4 col-md-6">
@@ -588,7 +668,7 @@
                             <i class="fas fa-palette"></i>
                         </div>
                         <h3>Premium Designs</h3>
-                        <p>Choose from 10+ professionally designed templates with unique styles - from minimalist to luxurious.</p>
+                        <p>Choose from 16+ professionally designed templates with unique styles - from minimalist elegance to luxurious executive layouts.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
@@ -742,7 +822,7 @@
             </div>
             <hr style="border-color: rgba(255,255,255,0.1); margin: 2rem 0;">
             <div class="text-center text-muted">
-                <p>&copy; 2024 BiodataPro. All rights reserved. Made with <i class="fas fa-heart" style="color: #f59e0b;"></i></p>
+                <p>&copy; 2024 BiodataPro. All rights reserved. Made with <i class="fas fa-heart" style="color: #ec4899;"></i> by professionals</p>
             </div>
         </div>
     </footer>
@@ -784,9 +864,38 @@
         window.firebaseSignIn = signInWithEmailAndPassword;
         window.firebaseAuthStateChanged = onAuthStateChanged;
 
+        // Session management - 5 days
+        function checkSessionExpiry() {
+            const loginTimestamp = localStorage.getItem('loginTimestamp');
+            if (loginTimestamp) {
+                const now = Date.now();
+                const fiveDays = 5 * 24 * 60 * 60 * 1000; // 5 days in milliseconds
+
+                if (now - parseInt(loginTimestamp) > fiveDays) {
+                    // Session expired - logout
+                    console.log('Session expired after 5 days');
+                    localStorage.removeItem('firebaseUser');
+                    localStorage.removeItem('currentUser');
+                    localStorage.removeItem('loginTimestamp');
+                    localStorage.removeItem('biodataFormData');
+                    localStorage.removeItem('selectedTemplate');
+                    return false;
+                }
+                return true;
+            }
+            return false;
+        }
+
         // Check authentication state
         onAuthStateChanged(auth, (user) => {
             if (user) {
+                // Check if session is expired
+                if (!checkSessionExpiry()) {
+                    // Force logout if session expired
+                    signOut(auth);
+                    return;
+                }
+
                 console.log('User is signed in:', user.email);
                 localStorage.setItem('firebaseUser', JSON.stringify({
                     uid: user.uid,
@@ -797,6 +906,7 @@
                 console.log('User is signed out');
                 localStorage.removeItem('firebaseUser');
                 localStorage.removeItem('currentUser');
+                localStorage.removeItem('loginTimestamp');
             }
         });
     </script>
@@ -898,6 +1008,9 @@
                         password: customerData.password
                     }));
 
+                    // Set login timestamp for 5-day session management
+                    localStorage.setItem('loginTimestamp', Date.now().toString());
+
                     toggleLoading(false);
                     showAlert('Login successful! Redirecting...', 'success');
                     setTimeout(() => {
@@ -976,6 +1089,9 @@
                     contact: contact,
                     password: password
                 }));
+
+                // Set login timestamp for 5-day session management
+                localStorage.setItem('loginTimestamp', Date.now().toString());
 
                 toggleLoading(false);
                 showAlert('Account created successfully! Redirecting...', 'success');
