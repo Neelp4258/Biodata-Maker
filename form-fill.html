@@ -422,6 +422,28 @@
                         </div>
 
                         <form id="biodataForm">
+                            <!-- Document Type Selection -->
+                            <div class="form-section">
+                                <h3 class="form-section-title">
+                                    <i class="fas fa-file-alt me-2"></i>Document Type
+                                </h3>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="form-label">Select Document Type<span class="required">*</span></label>
+                                            <select class="form-control-custom" id="documentType" name="documentType" required>
+                                                <option value="Resume">Resume</option>
+                                                <option value="Biodata" selected>Biodata</option>
+                                                <option value="CV">CV</option>
+                                                <option value="Portfolio">Portfolio</option>
+                                                <option value="Showcase Canvas">Showcase Canvas</option>
+                                                <option value="Personal Profile">Personal Profile</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <!-- Personal Information -->
                             <div class="form-section">
                                 <h3 class="form-section-title">
@@ -665,8 +687,40 @@
         let selectedTemplate = null;
         let templateHTML = '';
 
+        // Check session expiry (5 days)
+        function checkSessionExpiry() {
+            const loginTimestamp = localStorage.getItem('loginTimestamp');
+            if (loginTimestamp) {
+                const now = Date.now();
+                const fiveDays = 5 * 24 * 60 * 60 * 1000; // 5 days in milliseconds
+
+                if (now - parseInt(loginTimestamp) > fiveDays) {
+                    // Session expired - logout and redirect
+                    console.log('Session expired after 5 days');
+                    localStorage.removeItem('firebaseUser');
+                    localStorage.removeItem('currentUser');
+                    localStorage.removeItem('loginTimestamp');
+                    localStorage.removeItem('biodataFormData');
+                    localStorage.removeItem('selectedTemplate');
+                    alert('Your session has expired. Please login again.');
+                    window.location.href = 'index.html';
+                    return false;
+                }
+                return true;
+            }
+            // No timestamp means old session, require re-login
+            return false;
+        }
+
         // Check authentication and load template
         async function init() {
+            // Check session expiry first
+            if (!checkSessionExpiry()) {
+                localStorage.removeItem('currentUser');
+                window.location.href = 'index.html';
+                return;
+            }
+
             const currentUser = localStorage.getItem('currentUser');
             if (!currentUser) {
                 window.location.href = 'index.html';
@@ -761,9 +815,22 @@
             const cityState = (data.city && data.state) ? `${data.city}, ${data.state}` : (data.city || data.state || '[City, State]');
             const jobTitleCompany = (data.jobTitle && data.company) ? `${data.jobTitle} & ${data.company}` : (data.jobTitle || data.occupation || '[Job Title]');
             const ageDisplay = data.age ? `${data.age}` : '[Age]';
+            const documentType = data.documentType || 'Biodata';
 
             // Replace all placeholders with actual data - comprehensive list covering all template variations
             const replacements = {
+                // Document Type variations
+                'Professional Profile': documentType,
+                'PROFESSIONAL PROFILE': documentType.toUpperCase(),
+                'Executive Profile': documentType,
+                'EXECUTIVE PROFILE': documentType.toUpperCase(),
+                'Curriculum Vitae': documentType,
+                'CURRICULUM VITAE': documentType.toUpperCase(),
+                'Biodata': documentType,
+                'BIODATA': documentType.toUpperCase(),
+                'Resume': documentType,
+                'RESUME': documentType.toUpperCase(),
+                'CV': documentType,
                 // Name variations
                 '[Your Name]': data.fullName,
                 '[Full Name]': data.fullName,
@@ -884,6 +951,7 @@
         // Get form data
         function getFormData() {
             return {
+                documentType: document.getElementById('documentType').value || 'Biodata',
                 fullName: document.getElementById('fullName').value || '[Your Name]',
                 dob: document.getElementById('dob').value || '[Date of Birth]',
                 age: document.getElementById('age').value || '[Age]',
@@ -1101,7 +1169,8 @@
                 pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight, '', 'FAST');
 
                 // Save PDF
-                const fileName = `Biodata_${getFormData().fullName.replace(/\s+/g, '_')}_${Date.now()}.pdf`;
+                const formData = getFormData();
+                const fileName = `${formData.documentType}_${formData.fullName.replace(/\s+/g, '_')}_${Date.now()}.pdf`;
                 pdf.save(fileName);
 
                 document.getElementById('loadingOverlay').classList.remove('active');
