@@ -3,7 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Professional Biodata Maker - Create Your Perfect Resume</title>
+    <title>DazzloVerse - Free Professional Document Generator | Resume, CV, Biodata, Portfolio | Ambivare Solutions</title>
+
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="DazzloVerse by Ambivare Solutions - Create stunning professional documents FREE forever! Generate Resume, CV, Biodata, Portfolio in minutes with 20+ premium templates. Quick, attractive, and better than any other platform. Help employees get jobs faster and make marriages easier with beautiful biodatas.">
+    <meta name="keywords" content="free resume maker, CV generator, biodata creator, portfolio builder, professional documents, job application, marriage biodata, DazzloVerse, Ambivare Solutions, document generator, free forever, quick resume, attractive CV, premium templates">
+    <meta name="author" content="Ambivare Solutions">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="language" content="English">
+    <meta name="revisit-after" content="1 days">
+    <meta name="distribution" content="global">
+    <link rel="canonical" href="https://dazzloverse.com/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dazzloverse.com/">
+    <meta property="og:title" content="DazzloVerse - Free Professional Document Generator | Ambivare Solutions">
+    <meta property="og:description" content="Create stunning resumes, CVs, biodatas, and portfolios FREE forever! 20+ premium templates, quick generation, better than any other platform. By Ambivare Solutions.">
+    <meta property="og:image" content="https://dazzloverse.com/og-image.png">
+    <meta property="og:site_name" content="DazzloVerse">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://dazzloverse.com/">
+    <meta name="twitter:title" content="DazzloVerse - Free Professional Document Generator">
+    <meta name="twitter:description" content="Create professional resumes, CVs, biodatas FREE forever! 20+ premium templates by Ambivare Solutions.">
+    <meta name="twitter:image" content="https://dazzloverse.com/twitter-image.png">
+    <meta name="twitter:creator" content="@AmbivareSolutions">
+
+    <!-- Additional Meta Tags -->
+    <meta name="application-name" content="DazzloVerse">
+    <meta name="apple-mobile-web-app-title" content="DazzloVerse">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="theme-color" content="#1a1a2e">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -20,15 +60,14 @@
         }
 
         :root {
-            --primary-color: #6366f1;
-            --secondary-color: #4f46e5;
-            --accent-color: #10b981;
-            --dark-color: #0f172a;
-            --light-color: #f8fafc;
-            --gradient-primary: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-            --gradient-secondary: linear-gradient(135deg, #10b981 0%, #059669 100%);
-            --gradient-hero: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
-            --gradient-accent: linear-gradient(135deg, #f59e0b 0%, #f97316 100%);
+            --primary-color: #1a1a2e;
+            --secondary-color: #16213e;
+            --accent-color: #0f3460;
+            --gold-color: #c9a227;
+            --dark-color: #0a0a0f;
+            --light-color: #ffffff;
+            --text-gray: #666666;
+            --border-gray: #e5e5e5;
         }
 
         body {
@@ -53,12 +92,10 @@
 
         .navbar-brand {
             font-family: 'Playfair Display', serif;
-            font-weight: 800;
-            font-size: 1.8rem;
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            letter-spacing: -0.5px;
         }
 
         .nav-link {
@@ -76,7 +113,7 @@
             left: 50%;
             width: 0;
             height: 2px;
-            background: var(--gradient-primary);
+            background: var(--gold-color);
             transition: all 0.3s ease;
             transform: translateX(-50%);
         }
@@ -86,19 +123,22 @@
         }
 
         .btn-primary-custom {
-            background: var(--gradient-primary);
+            background: var(--gold-color);
             border: none;
-            padding: 0.7rem 2rem;
-            border-radius: 50px;
+            padding: 0.6rem 1.8rem;
+            border-radius: 4px;
             font-weight: 600;
+            font-size: 0.9rem;
             color: white;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .btn-primary-custom:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 25px rgba(102, 126, 234, 0.6);
+            background: #b8911f;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(201, 162, 39, 0.3);
         }
 
         /* Hero Section */
@@ -106,32 +146,35 @@
             min-height: 100vh;
             display: flex;
             align-items: center;
-            background: var(--gradient-hero);
+            background: var(--primary-color);
             position: relative;
             overflow: hidden;
-            padding: 120px 0 100px;
+            padding: 100px 0 80px;
+            border-bottom: 4px solid var(--gold-color);
         }
 
         .hero-section::before {
             content: '';
             position: absolute;
             top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: radial-gradient(circle at 20% 50%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 80%, rgba(139, 92, 246, 0.15) 0%, transparent 50%);
-            opacity: 1;
+            right: -100px;
+            width: 400px;
+            height: 400px;
+            background: var(--secondary-color);
+            border-radius: 50%;
+            opacity: 0.5;
         }
 
         .hero-section::after {
             content: '';
             position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 100px;
-            background: linear-gradient(180deg, transparent 0%, #ffffff 100%);
+            bottom: -150px;
+            left: -100px;
+            width: 350px;
+            height: 350px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            opacity: 0.4;
         }
 
         .hero-content {
@@ -142,39 +185,42 @@
 
         .hero-content h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1.2rem;
+            line-height: 1.3;
+            letter-spacing: -0.5px;
         }
 
         .hero-content p {
-            font-size: 1.25rem;
-            margin-bottom: 2.5rem;
-            opacity: 0.95;
-            font-weight: 300;
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            font-weight: 400;
+            line-height: 1.7;
         }
 
         .hero-buttons .btn {
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
+            padding: 0.8rem 2rem;
+            border-radius: 4px;
             font-weight: 600;
+            font-size: 0.9rem;
             margin: 0.5rem;
             transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .btn-light-custom {
-            background: white;
-            color: #667eea;
+            background: var(--gold-color);
+            color: white;
             border: none;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
         .btn-light-custom:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
-            color: #667eea;
+            background: #b8911f;
+            transform: translateY(-1px);
+            color: white;
         }
 
         .btn-outline-custom {
@@ -185,8 +231,8 @@
 
         .btn-outline-custom:hover {
             background: white;
-            color: #667eea;
-            transform: translateY(-3px);
+            color: var(--primary-color);
+            transform: translateY(-1px);
         }
 
         .hero-image {
@@ -213,18 +259,20 @@
 
         .section-title {
             font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 700;
             text-align: center;
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
             color: var(--dark-color);
+            letter-spacing: -0.5px;
         }
 
         .section-subtitle {
             text-align: center;
-            font-size: 1.1rem;
-            color: #64748b;
-            margin-bottom: 4rem;
+            font-size: 0.95rem;
+            color: var(--text-gray);
+            margin-bottom: 3rem;
+            font-weight: 400;
         }
 
         .feature-card {
@@ -244,43 +292,24 @@
         }
 
         .feature-icon {
-            width: 80px;
-            height: 80px;
-            border-radius: 20px;
-            background: var(--gradient-primary);
+            width: 70px;
+            height: 70px;
+            border-radius: 8px;
+            background: var(--primary-color);
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 1.5rem;
-            font-size: 2rem;
-            color: white;
-            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+            margin: 0 auto 1.2rem;
+            font-size: 1.8rem;
+            color: var(--gold-color);
             transition: all 0.3s ease;
+            border: 2px solid var(--gold-color);
         }
 
         .feature-card:hover .feature-icon {
-            transform: scale(1.1) rotate(5deg);
-            box-shadow: 0 15px 40px rgba(99, 102, 241, 0.6);
-        }
-
-        .feature-card:nth-child(2) .feature-icon {
-            background: var(--gradient-secondary);
-        }
-
-        .feature-card:nth-child(3) .feature-icon {
-            background: var(--gradient-accent);
-        }
-
-        .feature-card:nth-child(4) .feature-icon {
-            background: linear-gradient(135deg, #ec4899 0%, #be185d 100%);
-        }
-
-        .feature-card:nth-child(5) .feature-icon {
-            background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);
-        }
-
-        .feature-card:nth-child(6) .feature-icon {
-            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            background: var(--gold-color);
+            color: white;
+            transform: translateY(-5px);
         }
 
         .feature-card h3 {
@@ -390,22 +419,11 @@
 
         /* Stats Section */
         .stats-section {
-            padding: 80px 0;
-            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%);
+            padding: 60px 0;
+            background: var(--secondary-color);
             color: white;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .stats-section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="10" cy="10" r="3" fill="rgba(255,255,255,0.1)"/><circle cx="90" cy="90" r="3" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="50" r="2" fill="rgba(255,255,255,0.1)"/></svg>');
-            background-size: 100px 100px;
+            border-top: 2px solid var(--gold-color);
+            border-bottom: 2px solid var(--gold-color);
         }
 
         .stat-card {
@@ -416,35 +434,26 @@
         }
 
         .stat-number {
-            font-size: 3.5rem;
-            font-weight: 800;
+            font-size: 2.8rem;
+            font-weight: 700;
             margin-bottom: 0.5rem;
-            text-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            color: var(--gold-color);
         }
 
         .stat-label {
-            font-size: 1.1rem;
-            opacity: 0.95;
-            font-weight: 500;
-            letter-spacing: 0.5px;
+            font-size: 0.95rem;
+            opacity: 0.9;
+            font-weight: 400;
+            letter-spacing: 0.3px;
         }
 
         /* Footer */
         .footer {
-            padding: 60px 0 30px;
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            padding: 50px 0 25px;
+            background: var(--dark-color);
             color: white;
             position: relative;
-        }
-
-        .footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent 0%, #6366f1 50%, transparent 100%);
+            border-top: 3px solid var(--gold-color);
         }
 
         .footer h5 {
@@ -556,7 +565,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#home">
-                <i class="fas fa-id-card me-2"></i>BiodataPro
+                <i class="fas fa-file-alt me-2"></i>DazzloVerse
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
@@ -588,8 +597,8 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6 hero-content">
-                    <h1>Create Your Perfect Professional Biodata</h1>
-                    <p>Choose from premium templates, fill in your details, and download a stunning PDF resume in minutes. Stand out from the crowd with our professionally designed biodata templates.</p>
+                    <h1>DazzloVerse Personal Document Generation Software</h1>
+                    <p>By Ambivare Solutions - Create stunning professional documents <strong>FREE forever!</strong> Generate Resume, CV, Biodata, Portfolio in minutes with 20+ premium templates. Help employees get jobs quickly and make marriages easier. Quick, attractive, and better than any other platform.</p>
                     <div class="hero-buttons">
                         <a href="#auth" class="btn btn-light-custom">
                             <i class="fas fa-rocket me-2"></i>Get Started Free
@@ -629,7 +638,7 @@
             <div class="row">
                 <div class="col-md-3 col-6">
                     <div class="stat-card">
-                        <div class="stat-number">16+</div>
+                        <div class="stat-number">20+</div>
                         <div class="stat-label">Premium Templates</div>
                     </div>
                 </div>
@@ -658,8 +667,8 @@
     <!-- Features Section -->
     <section id="features" class="features-section">
         <div class="container">
-            <h2 class="section-title">Why Choose BiodataPro?</h2>
-            <p class="section-subtitle">Everything you need to create a stunning professional document in minutes</p>
+            <h2 class="section-title">Why Choose DazzloVerse?</h2>
+            <p class="section-subtitle">FREE Forever Service by Ambivare Solutions - Everything you need to create stunning documents in minutes</p>
 
             <div class="row g-4">
                 <div class="col-lg-4 col-md-6">
@@ -667,8 +676,8 @@
                         <div class="feature-icon">
                             <i class="fas fa-palette"></i>
                         </div>
-                        <h3>Premium Designs</h3>
-                        <p>Choose from 16+ professionally designed templates with unique styles - from minimalist elegance to luxurious executive layouts.</p>
+                        <h3>Premium Designs - FREE Forever</h3>
+                        <p>Choose from 20+ professionally designed templates with unique styles - from minimalist elegance to luxurious executive layouts. All completely FREE!</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
@@ -784,8 +793,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 mb-4">
-                    <h5><i class="fas fa-id-card me-2"></i>BiodataPro</h5>
-                    <p class="text-muted">Create professional biodata and resumes with our premium templates. Stand out from the crowd.</p>
+                    <h5><i class="fas fa-file-alt me-2"></i>DazzloVerse</h5>
+                    <p class="text-muted">By Ambivare Solutions - FREE professional document generation service. Create stunning resumes, CVs, biodatas, and portfolios in minutes. Better than any other platform!</p>
                     <div class="social-links mt-3">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
@@ -814,15 +823,15 @@
                 <div class="col-lg-3 mb-4">
                     <h5>Contact</h5>
                     <ul class="footer-links">
-                        <li><i class="fas fa-envelope me-2"></i>info@biodatapro.com</li>
-                        <li><i class="fas fa-phone me-2"></i>+1 234 567 890</li>
-                        <li><i class="fas fa-map-marker-alt me-2"></i>123 Business St, City</li>
+                        <li><i class="fas fa-envelope me-2"></i>contact@ambivare.com</li>
+                        <li><i class="fas fa-phone me-2"></i>+91 9373015503</li>
+                        <li><i class="fas fa-building me-2"></i>Ambivare Solutions</li>
                     </ul>
                 </div>
             </div>
             <hr style="border-color: rgba(255,255,255,0.1); margin: 2rem 0;">
             <div class="text-center text-muted">
-                <p>&copy; 2024 BiodataPro. All rights reserved. Made with <i class="fas fa-heart" style="color: #ec4899;"></i> by professionals</p>
+                <p>&copy; 2024 DazzloVerse by Ambivare Solutions. All rights reserved. FREE Service for Everyone. Made with <i class="fas fa-heart" style="color: #dc2626;"></i> to help people succeed</p>
             </div>
         </div>
     </footer>
