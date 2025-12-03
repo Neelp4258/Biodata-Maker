@@ -594,9 +594,10 @@
 
     <script>
         let selectedTemplate = null;
+        let templateHTML = '';
 
         // Check authentication and load template
-        function init() {
+        async function init() {
             const currentUser = localStorage.getItem('currentUser');
             if (!currentUser) {
                 window.location.href = 'index.html';
@@ -612,11 +613,25 @@
             selectedTemplate = JSON.parse(template);
             document.getElementById('templateName').textContent = selectedTemplate.name;
 
+            // Load the actual template HTML
+            await loadTemplateHTML();
+
             // Load saved data if exists
             loadSavedData();
 
             // Setup auto-save and preview update
             setupFormListeners();
+        }
+
+        // Load template HTML from file
+        async function loadTemplateHTML() {
+            try {
+                const response = await fetch(selectedTemplate.file);
+                templateHTML = await response.text();
+            } catch (error) {
+                console.error('Error loading template:', error);
+                showAlert('Error loading template. Using default layout.', 'error');
+            }
         }
 
         // Setup form listeners
@@ -657,11 +672,64 @@
             const formData = getFormData();
             const frame = document.getElementById('previewFrame');
 
-            // Create preview HTML with form data
-            const previewHTML = generatePreviewHTML(formData);
+            // Create preview HTML with form data injected into template
+            const previewHTML = injectDataIntoTemplate(formData);
 
             const blob = new Blob([previewHTML], { type: 'text/html' });
             frame.src = URL.createObjectURL(blob);
+        }
+
+        // Inject form data into template HTML
+        function injectDataIntoTemplate(data) {
+            if (!templateHTML) {
+                // Fallback to basic preview if template not loaded
+                return generatePreviewHTML(data);
+            }
+
+            let filledTemplate = templateHTML;
+
+            // Replace all placeholders with actual data
+            const replacements = {
+                '[Your Name]': data.fullName,
+                '[Full Name]': data.fullName,
+                '[DOB]': data.dob,
+                '[Date of Birth]': data.dob,
+                '[Age]': data.age + ' years',
+                '[Email]': data.email,
+                '[Email Address]': data.email,
+                '[Phone Number]': data.phone,
+                '[Contact]': data.phone,
+                '[Phone]': data.phone,
+                '[Education]': data.education,
+                '[Educational Background]': data.education,
+                '[Current Occupation]': data.occupation,
+                '[Occupation]': data.occupation,
+                '[Years of Experience]': data.workExperience,
+                '[Work Experience]': data.workExperience,
+                '[Professional Skills and Competencies]': data.skills,
+                '[Skills]': data.skills,
+                '[Skills & Expertise]': data.skills,
+                '[Father\'s Name]': data.fatherName,
+                '[Father Name]': data.fatherName,
+                '[Father\'s Occupation]': data.fatherOccupation,
+                '[Mother\'s Name]': data.motherName,
+                '[Mother Name]': data.motherName,
+                '[Mother\'s Occupation]': data.motherOccupation,
+                '[Complete Address]': data.address,
+                '[Address]': data.address,
+                '[Hobbies]': data.hobbies,
+                '[Hobbies & Interests]': data.hobbies,
+                '[Additional Information]': data.additionalNotes,
+                '[Additional Notes]': data.additionalNotes
+            };
+
+            // Replace all placeholders
+            for (const [placeholder, value] of Object.entries(replacements)) {
+                const regex = new RegExp(placeholder.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
+                filledTemplate = filledTemplate.replace(regex, value);
+            }
+
+            return filledTemplate;
         }
 
         // Get form data
@@ -802,7 +870,7 @@
         }
 
         // Generate PDF
-        function generatePDF() {
+        async function generatePDF() {
             // Validate required fields
             const form = document.getElementById('biodataForm');
             if (!form.checkValidity()) {
@@ -814,51 +882,62 @@
             showAlert('Generating your PDF... Please wait.', 'info');
             document.getElementById('loadingOverlay').classList.add('active');
 
-            // Get the iframe content
-            const frame = document.getElementById('previewFrame');
+            try {
+                // Get the iframe content
+                const frame = document.getElementById('previewFrame');
+                const iframeDocument = frame.contentDocument || frame.contentWindow.document;
+                const iframeBody = iframeDocument.body;
 
-            setTimeout(() => {
-                // Use html2canvas to capture the full A4 page
-                html2canvas(frame.contentDocument.body, {
-                    scale: 3,
+                // Wait a bit for fonts and styles to load
+                await new Promise(resolve => setTimeout(resolve, 1000));
+
+                // Get the actual content element (usually .page or body)
+                const contentElement = iframeDocument.querySelector('.page') || iframeBody;
+
+                // Use html2canvas to capture the full A4 template
+                const canvas = await html2canvas(contentElement, {
+                    scale: 2,
                     useCORS: true,
                     allowTaint: true,
                     backgroundColor: '#ffffff',
                     width: 794,  // A4 width in pixels at 96 DPI (210mm)
                     height: 1123, // A4 height in pixels at 96 DPI (297mm)
                     windowWidth: 794,
-                    windowHeight: 1123
-                }).then(canvas => {
-                    const imgData = canvas.toDataURL('image/png');
-
-                    // Create PDF with A4 dimensions
-                    const { jsPDF } = window.jspdf;
-                    const pdf = new jsPDF({
-                        orientation: 'portrait',
-                        unit: 'mm',
-                        format: 'a4',
-                        compress: true
-                    });
-
-                    // A4 dimensions in mm
-                    const pdfWidth = 210;
-                    const pdfHeight = 297;
-
-                    // Add image to fill the entire A4 page
-                    pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight, '', 'FAST');
-
-                    // Save PDF
-                    const fileName = `Biodata_${getFormData().fullName.replace(/\s+/g, '_')}_${new Date().getTime()}.pdf`;
-                    pdf.save(fileName);
-
-                    document.getElementById('loadingOverlay').classList.remove('active');
-                    showAlert('PDF downloaded successfully!', 'success');
-                }).catch(error => {
-                    console.error('Error generating PDF:', error);
-                    document.getElementById('loadingOverlay').classList.remove('active');
-                    showAlert('Error generating PDF. Please try again.', 'error');
+                    windowHeight: 1123,
+                    logging: false,
+                    imageTimeout: 0,
+                    removeContainer: false
                 });
-            }, 500);
+
+                const imgData = canvas.toDataURL('image/png', 1.0);
+
+                // Create PDF with A4 dimensions
+                const { jsPDF } = window.jspdf;
+                const pdf = new jsPDF({
+                    orientation: 'portrait',
+                    unit: 'mm',
+                    format: 'a4',
+                    compress: true
+                });
+
+                // A4 dimensions in mm
+                const pdfWidth = 210;
+                const pdfHeight = 297;
+
+                // Add image to fill the entire A4 page
+                pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight, '', 'FAST');
+
+                // Save PDF
+                const fileName = `Biodata_${getFormData().fullName.replace(/\s+/g, '_')}_${Date.now()}.pdf`;
+                pdf.save(fileName);
+
+                document.getElementById('loadingOverlay').classList.remove('active');
+                showAlert('PDF downloaded successfully!', 'success');
+            } catch (error) {
+                console.error('Error generating PDF:', error);
+                document.getElementById('loadingOverlay').classList.remove('active');
+                showAlert('Error generating PDF. Please try again.', 'error');
+            }
         }
 
         // Open full preview
