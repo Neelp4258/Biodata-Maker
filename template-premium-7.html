@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Template 7 - Timeline Executive</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Libre+Baskerville:wght@400;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: #2d3748;
+            background: #ffffff;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .page {
+            width: 210mm;
+            height: 296.8mm;
+            overflow: hidden;
+            position: relative;
+            background: #ffffff;
+        }
+
+        .header-bar {
+            height: 80mm;
+            background: linear-gradient(135deg, #1a202c 0%, #2d3748 100%);
+            padding: 20mm 25mm;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-bar::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background: rgba(237, 137, 54, 0.1);
+            border-radius: 50%;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .name {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 24pt;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 3mm;
+            letter-spacing: 1px;
+        }
+
+        .title {
+            font-size: 11pt;
+            color: #ed8936;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 8mm;
+        }
+
+        .contact-row {
+            display: flex;
+            gap: 15mm;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            color: #e2e8f0;
+            font-size: 9pt;
+            display: flex;
+            align-items: center;
+            gap: 3mm;
+        }
+
+        .content-area {
+            padding: 15mm 25mm 20mm;
+        }
+
+        .section {
+            margin-bottom: 10mm;
+            position: relative;
+        }
+
+        .section-title {
+            font-family: 'Libre Baskerville', serif;
+            font-size: 13pt;
+            font-weight: 700;
+            color: #1a202c;
+            margin-bottom: 8mm;
+            padding-left: 12mm;
+            position: relative;
+        }
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8mm;
+            height: 3px;
+            background: #ed8936;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 12mm;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 4mm;
+            top: 5mm;
+            bottom: 5mm;
+            width: 2px;
+            background: #e2e8f0;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 6mm;
+            padding-left: 10mm;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 3.5mm;
+            top: 2mm;
+            width: 3mm;
+            height: 3mm;
+            background: #ed8936;
+            border-radius: 50%;
+            border: 2px solid #ffffff;
+            box-shadow: 0 0 0 2px #ed8936;
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 2mm;
+        }
+
+        .timeline-title {
+            font-size: 10.5pt;
+            font-weight: 700;
+            color: #2d3748;
+        }
+
+        .timeline-date {
+            font-size: 8.5pt;
+            color: #ed8936;
+            font-weight: 600;
+        }
+
+        .timeline-subtitle {
+            font-size: 9.5pt;
+            color: #4a5568;
+            margin-bottom: 2mm;
+            font-weight: 500;
+        }
+
+        .timeline-description {
+            font-size: 9pt;
+            color: #718096;
+            line-height: 1.5;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5mm 10mm;
+            padding-left: 12mm;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5mm;
+        }
+
+        .info-label {
+            font-size: 8.5pt;
+            font-weight: 700;
+            color: #4a5568;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .info-value {
+            font-size: 9.5pt;
+            color: #2d3748;
+            line-height: 1.4;
+        }
+
+        .skills-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3mm;
+            padding-left: 12mm;
+        }
+
+        .skill-tag {
+            background: #f7fafc;
+            border: 1px solid #ed8936;
+            color: #2d3748;
+            padding: 2mm 4mm;
+            border-radius: 4px;
+            font-size: 8.5pt;
+            font-weight: 500;
+        }
+
+        @media print {
+            body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="header-bar">
+            <div class="header-content">
+                <div class="name">[Your Name]</div>
+                <div class="title">Professional Profile</div>
+                <div class="contact-row">
+                    <div class="contact-item">📧 [Email Address]</div>
+                    <div class="contact-item">📱 [Phone Number]</div>
+                    <div class="contact-item">📍 [City, State]</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-area">
+            <div class="section">
+                <div class="section-title">Personal Information</div>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">Date of Birth</div>
+                        <div class="info-value">[Date of Birth]</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Age</div>
+                        <div class="info-value">[Age] years</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Nationality</div>
+                        <div class="info-value">[Country]</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Current Occupation</div>
+                        <div class="info-value">[Job Title]</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">Education Timeline</div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-header">
+                            <div class="timeline-title">[Educational Background]</div>
+                            <div class="timeline-date">[Year]</div>
+                        </div>
+                        <div class="timeline-subtitle">[University]</div>
+                        <div class="timeline-description">[Field of Study]</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">Professional Experience</div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-header">
+                            <div class="timeline-title">[Job Title]</div>
+                            <div class="timeline-date">[Duration]</div>
+                        </div>
+                        <div class="timeline-subtitle">[Company]</div>
+                        <div class="timeline-description">[Work Experience & Achievements]</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">Skills & Expertise</div>
+                <div class="skills-tags">
+                    <div class="skill-tag">[Skills]</div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">Family Background</div>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-label">Father's Name</div>
+                        <div class="info-value">[Father's Name]</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Mother's Name</div>
+                        <div class="info-value">[Mother's Name]</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
