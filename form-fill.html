@@ -915,6 +915,7 @@
                 // University/Institution variations
                 '[University/College Name]': data.university,
                 '[University/College]': data.university,
+                '[University]': data.university,
                 '[Institution]': data.university,
 
                 // Field of Study variations
@@ -924,6 +925,13 @@
                 // Academic Honors variations
                 '[Academic Honors]': data.academicHonors,
                 '[Achievements]': data.academicHonors,
+
+                // Year/Duration variations (use first entry if available)
+                '[Year]': data.educationEntries?.[0]?.year || '[Year]',
+                '[Duration]': data.workEntries?.[0]?.duration || '[Duration]',
+
+                // Company variations
+                '[Company]': data.company,
 
                 // Occupation/Job Title variations
                 '[Current Occupation]': data.occupation,
@@ -1155,6 +1163,7 @@
                 education: educationEntries[0]?.degree || '[Educational Background]',
                 university: educationEntries[0]?.university || '[University]',
                 fieldOfStudy: educationEntries[0]?.field || '[Field of Study]',
+                academicHonors: educationEntries[0]?.grade || '[Academic Honors]',
                 jobTitle: workEntries[0]?.title || '[Job Title]',
                 company: workEntries[0]?.company || '[Company]',
                 occupation: workEntries[0]?.title || '[Occupation]',
