@@ -461,14 +461,63 @@
                                 </div>
                             </div>
 
+                            <!-- Location -->
+                            <div class="form-section">
+                                <h3 class="form-section-title">
+                                    <i class="fas fa-map-marker-alt me-2"></i>Location
+                                </h3>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="form-label">City<span class="required">*</span></label>
+                                            <input type="text" class="form-control-custom" id="city" name="city" placeholder="Enter your city" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="form-label">State<span class="required">*</span></label>
+                                            <input type="text" class="form-control-custom" id="state" name="state" placeholder="Enter your state" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="form-label">Country<span class="required">*</span></label>
+                                            <input type="text" class="form-control-custom" id="country" name="country" placeholder="Enter your country" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
                             <!-- Education -->
                             <div class="form-section">
                                 <h3 class="form-section-title">
                                     <i class="fas fa-graduation-cap me-2"></i>Education
                                 </h3>
-                                <div class="form-group">
-                                    <label class="form-label">Educational Background<span class="required">*</span></label>
-                                    <textarea class="form-control-custom" id="education" name="education" placeholder="E.g., Bachelor of Science in Computer Science, XYZ University, 2020" required></textarea>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="form-label">Educational Background<span class="required">*</span></label>
+                                            <textarea class="form-control-custom" id="education" name="education" placeholder="E.g., Bachelor of Science in Computer Science, 2020" required></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="form-label">University/College Name</label>
+                                            <input type="text" class="form-control-custom" id="university" name="university" placeholder="E.g., XYZ University">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="form-label">Field of Study/Specialization</label>
+                                            <input type="text" class="form-control-custom" id="fieldOfStudy" name="fieldOfStudy" placeholder="E.g., Computer Science">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="form-label">Academic Achievements/Honors</label>
+                                            <input type="text" class="form-control-custom" id="academicHonors" name="academicHonors" placeholder="E.g., Dean's List, Honors Graduate">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -477,17 +526,37 @@
                                 <h3 class="form-section-title">
                                     <i class="fas fa-briefcase me-2"></i>Professional Background
                                 </h3>
-                                <div class="form-group">
-                                    <label class="form-label">Current Occupation<span class="required">*</span></label>
-                                    <input type="text" class="form-control-custom" id="occupation" name="occupation" placeholder="E.g., Software Engineer, Marketing Manager" required>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">Work Experience</label>
-                                    <textarea class="form-control-custom" id="workExperience" name="workExperience" placeholder="Describe your work experience, job roles, and achievements..."></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">Skills & Expertise</label>
-                                    <input type="text" class="form-control-custom" id="skills" name="skills" placeholder="E.g., Project Management, Communication, Technical Skills">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="form-label">Current Job Title<span class="required">*</span></label>
+                                            <input type="text" class="form-control-custom" id="jobTitle" name="jobTitle" placeholder="E.g., Software Engineer" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="form-label">Company Name</label>
+                                            <input type="text" class="form-control-custom" id="company" name="company" placeholder="E.g., ABC Technologies">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="form-label">Current Occupation<span class="required">*</span></label>
+                                            <input type="text" class="form-control-custom" id="occupation" name="occupation" placeholder="E.g., Software Engineer, Marketing Manager" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="form-label">Work Experience</label>
+                                            <textarea class="form-control-custom" id="workExperience" name="workExperience" placeholder="Describe your work experience, job roles, and achievements..."></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="form-label">Skills & Expertise</label>
+                                            <input type="text" class="form-control-custom" id="skills" name="skills" placeholder="E.g., Project Management, Communication, Technical Skills">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -688,37 +757,117 @@
 
             let filledTemplate = templateHTML;
 
-            // Replace all placeholders with actual data
+            // Prepare dynamic values
+            const cityState = (data.city && data.state) ? `${data.city}, ${data.state}` : (data.city || data.state || '[City, State]');
+            const jobTitleCompany = (data.jobTitle && data.company) ? `${data.jobTitle} & ${data.company}` : (data.jobTitle || data.occupation || '[Job Title]');
+            const ageDisplay = data.age ? `${data.age}` : '[Age]';
+
+            // Replace all placeholders with actual data - comprehensive list covering all template variations
             const replacements = {
+                // Name variations
                 '[Your Name]': data.fullName,
                 '[Full Name]': data.fullName,
+                '[Complete Name]': data.fullName,
+                '[YOUR NAME]': data.fullName,
+
+                // Date of Birth variations
                 '[DOB]': data.dob,
                 '[Date of Birth]': data.dob,
-                '[Age]': data.age + ' years',
+                '[Birth Date]': data.dob,
+
+                // Age variations (without adding 'years' to avoid double text)
+                '[Age] years': ageDisplay,
+                '[Age]': ageDisplay,
+
+                // Email variations
                 '[Email]': data.email,
                 '[Email Address]': data.email,
+
+                // Phone variations
                 '[Phone Number]': data.phone,
                 '[Contact]': data.phone,
                 '[Phone]': data.phone,
+
+                // Location variations
+                '[City, State]': cityState,
+                '[City]': data.city,
+                '[State]': data.state,
+                '[Country]': data.country,
+
+                // Education variations
                 '[Education]': data.education,
                 '[Educational Background]': data.education,
+                '[Educational Details]': data.education,
+                '[Education Level]': data.education,
+                '[Educational Background & Degrees]': data.education,
+                '[Qualification]': data.education,
+
+                // University/Institution variations
+                '[University/College Name]': data.university,
+                '[University/College]': data.university,
+                '[Institution]': data.university,
+
+                // Field of Study variations
+                '[Field of Study]': data.fieldOfStudy,
+                '[Specialization]': data.fieldOfStudy,
+
+                // Academic Honors variations
+                '[Academic Honors]': data.academicHonors,
+                '[Achievements]': data.academicHonors,
+
+                // Occupation/Job Title variations
                 '[Current Occupation]': data.occupation,
                 '[Occupation]': data.occupation,
+                '[Occupation & Job Title]': data.occupation,
+                '[Current Job Title]': data.jobTitle,
+                '[Job Title]': data.jobTitle,
+                '[Current Position]': data.occupation,
+                '[Position]': data.jobTitle,
+                '[Job Title & Company]': jobTitleCompany,
+
+                // Work Experience variations
                 '[Years of Experience]': data.workExperience,
                 '[Work Experience]': data.workExperience,
-                '[Professional Skills and Competencies]': data.skills,
+                '[Work Experience & Achievements]': data.workExperience,
+                '[Years of Experience & Key Roles]': data.workExperience,
+                '[Years & Key Achievements]': data.workExperience,
+                '[Work History]': data.workExperience,
+                '[Work History & Achievements]': data.workExperience,
+                '[Experience]': data.workExperience,
+
+                // Skills variations
                 '[Skills]': data.skills,
+                '[Professional Skills]': data.skills,
+                '[Professional Skills and Competencies]': data.skills,
+                '[Skills & Competencies]': data.skills,
+                '[Professional Competencies]': data.skills,
+                '[Core Skills]': data.skills,
+                '[Expertise]': data.skills,
                 '[Skills & Expertise]': data.skills,
+
+                // Father variations
                 '[Father\'s Name]': data.fatherName,
                 '[Father Name]': data.fatherName,
+                '[Father]': data.fatherName,
                 '[Father\'s Occupation]': data.fatherOccupation,
+
+                // Mother variations
                 '[Mother\'s Name]': data.motherName,
                 '[Mother Name]': data.motherName,
+                '[Mother]': data.motherName,
                 '[Mother\'s Occupation]': data.motherOccupation,
+
+                // Address variations
                 '[Complete Address]': data.address,
+                '[Complete Address Details]': data.address,
+                '[Complete Residential Address]': data.address,
                 '[Address]': data.address,
+
+                // Hobbies variations
                 '[Hobbies]': data.hobbies,
                 '[Hobbies & Interests]': data.hobbies,
+
+                // Additional Notes variations
                 '[Additional Information]': data.additionalNotes,
                 '[Additional Notes]': data.additionalNotes
             };
@@ -726,7 +875,7 @@
             // Replace all placeholders
             for (const [placeholder, value] of Object.entries(replacements)) {
                 const regex = new RegExp(placeholder.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
-                filledTemplate = filledTemplate.replace(regex, value);
+                filledTemplate = filledTemplate.replace(regex, value || placeholder);
             }
 
             return filledTemplate;
@@ -740,7 +889,15 @@
                 age: document.getElementById('age').value || '[Age]',
                 email: document.getElementById('email').value || '[Email]',
                 phone: document.getElementById('phone').value || '[Phone]',
+                city: document.getElementById('city').value || '[City]',
+                state: document.getElementById('state').value || '[State]',
+                country: document.getElementById('country').value || '[Country]',
                 education: document.getElementById('education').value || '[Educational Background]',
+                university: document.getElementById('university').value || '[University]',
+                fieldOfStudy: document.getElementById('fieldOfStudy').value || '[Field of Study]',
+                academicHonors: document.getElementById('academicHonors').value || '[Academic Honors]',
+                jobTitle: document.getElementById('jobTitle').value || '[Job Title]',
+                company: document.getElementById('company').value || '[Company]',
                 occupation: document.getElementById('occupation').value || '[Occupation]',
                 workExperience: document.getElementById('workExperience').value || '[Work Experience]',
                 skills: document.getElementById('skills').value || '[Skills]',
@@ -820,11 +977,22 @@
                             <div class="field"><span class="label">Phone:</span> ${data.phone}</div>
                         </div>
                         <div class="section">
+                            <div class="section-title">Location</div>
+                            <div class="field"><span class="label">City:</span> ${data.city}</div>
+                            <div class="field"><span class="label">State:</span> ${data.state}</div>
+                            <div class="field"><span class="label">Country:</span> ${data.country}</div>
+                        </div>
+                        <div class="section">
                             <div class="section-title">Education</div>
                             <div class="field">${data.education}</div>
+                            <div class="field"><span class="label">University:</span> ${data.university}</div>
+                            <div class="field"><span class="label">Field of Study:</span> ${data.fieldOfStudy}</div>
+                            <div class="field"><span class="label">Honors:</span> ${data.academicHonors}</div>
                         </div>
                         <div class="section">
                             <div class="section-title">Professional Background</div>
+                            <div class="field"><span class="label">Job Title:</span> ${data.jobTitle}</div>
+                            <div class="field"><span class="label">Company:</span> ${data.company}</div>
                             <div class="field"><span class="label">Occupation:</span> ${data.occupation}</div>
                             <div class="field"><span class="label">Experience:</span> ${data.workExperience}</div>
                             <div class="field"><span class="label">Skills:</span> ${data.skills}</div>
@@ -860,11 +1028,16 @@
                 const data = JSON.parse(savedData);
                 Object.keys(data).forEach(key => {
                     const element = document.getElementById(key);
-                    if (element && data[key] !== `[${key}]`) {
-                        element.value = data[key];
+                    if (element) {
+                        // Skip if value is a placeholder
+                        const isPlaceholder = typeof data[key] === 'string' && data[key].startsWith('[') && data[key].endsWith(']');
+                        if (!isPlaceholder) {
+                            element.value = data[key];
+                        }
                     }
                 });
                 updateProgress();
+                updatePreview();
                 showAlert('Previous data loaded successfully!', 'info');
             }
         }
