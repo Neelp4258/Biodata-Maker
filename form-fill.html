@@ -514,30 +514,43 @@
                             <div class="form-section">
                                 <h3 class="form-section-title">
                                     <i class="fas fa-graduation-cap me-2"></i>Education
+                                    <button type="button" class="btn btn-sm btn-success float-end" onclick="addEducation()">
+                                        <i class="fas fa-plus me-1"></i>Add More Education
+                                    </button>
                                 </h3>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label class="form-label">Educational Background<span class="required">*</span></label>
-                                            <textarea class="form-control-custom" id="education" name="education" placeholder="E.g., Bachelor of Science in Computer Science, 2020" required></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="form-label">University/College Name</label>
-                                            <input type="text" class="form-control-custom" id="university" name="university" placeholder="E.g., XYZ University">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="form-label">Field of Study/Specialization</label>
-                                            <input type="text" class="form-control-custom" id="fieldOfStudy" name="fieldOfStudy" placeholder="E.g., Computer Science">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label class="form-label">Academic Achievements/Honors</label>
-                                            <input type="text" class="form-control-custom" id="academicHonors" name="academicHonors" placeholder="E.g., Dean's List, Honors Graduate">
+                                <div id="educationContainer">
+                                    <div class="education-entry" data-index="0" style="border: 2px solid #e5e5e5; padding: 20px; border-radius: 10px; margin-bottom: 20px; position: relative;">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">Degree/Qualification<span class="required">*</span></label>
+                                                    <input type="text" class="form-control-custom education-degree" placeholder="E.g., Bachelor of Science" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label">University/College Name<span class="required">*</span></label>
+                                                    <input type="text" class="form-control-custom education-university" placeholder="E.g., XYZ University" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label">Field of Study</label>
+                                                    <input type="text" class="form-control-custom education-field" placeholder="E.g., Computer Science">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label">Year of Completion</label>
+                                                    <input type="text" class="form-control-custom education-year" placeholder="E.g., 2020">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label">Grade/CGPA</label>
+                                                    <input type="text" class="form-control-custom education-grade" placeholder="E.g., 8.5 CGPA">
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -546,37 +559,52 @@
                             <!-- Professional Background -->
                             <div class="form-section">
                                 <h3 class="form-section-title">
-                                    <i class="fas fa-briefcase me-2"></i>Professional Background
+                                    <i class="fas fa-briefcase me-2"></i>Work Experience
+                                    <button type="button" class="btn btn-sm btn-success float-end" onclick="addWorkExperience()">
+                                        <i class="fas fa-plus me-1"></i>Add More Experience
+                                    </button>
                                 </h3>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="form-label">Current Job Title<span class="required">*</span></label>
-                                            <input type="text" class="form-control-custom" id="jobTitle" name="jobTitle" placeholder="E.g., Software Engineer" required>
+                                <div id="workExperienceContainer">
+                                    <div class="work-entry" data-index="0" style="border: 2px solid #e5e5e5; padding: 20px; border-radius: 10px; margin-bottom: 20px; position: relative;">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label">Job Title<span class="required">*</span></label>
+                                                    <input type="text" class="form-control-custom work-title" placeholder="E.g., Software Engineer" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label">Company Name<span class="required">*</span></label>
+                                                    <input type="text" class="form-control-custom work-company" placeholder="E.g., ABC Technologies" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label">Duration</label>
+                                                    <input type="text" class="form-control-custom work-duration" placeholder="E.g., Jan 2020 - Present">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label class="form-label">Location</label>
+                                                    <input type="text" class="form-control-custom work-location" placeholder="E.g., Mumbai, India">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label class="form-label">Responsibilities & Achievements</label>
+                                                    <textarea class="form-control-custom work-description" placeholder="Describe your key responsibilities and achievements..."></textarea>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label class="form-label">Company Name</label>
-                                            <input type="text" class="form-control-custom" id="company" name="company" placeholder="E.g., ABC Technologies">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label class="form-label">Current Occupation<span class="required">*</span></label>
-                                            <input type="text" class="form-control-custom" id="occupation" name="occupation" placeholder="E.g., Software Engineer, Marketing Manager" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label class="form-label">Work Experience</label>
-                                            <textarea class="form-control-custom" id="workExperience" name="workExperience" placeholder="Describe your work experience, job roles, and achievements..."></textarea>
-                                        </div>
-                                    </div>
+                                </div>
+                                <div class="row mt-3">
                                     <div class="col-md-12">
                                         <div class="form-group">
                                             <label class="form-label">Skills & Expertise</label>
-                                            <input type="text" class="form-control-custom" id="skills" name="skills" placeholder="E.g., Project Management, Communication, Technical Skills">
+                                            <input type="text" class="form-control-custom" id="skills" name="skills" placeholder="E.g., Project Management, Communication, Technical Skills, JavaScript, Python">
                                         </div>
                                     </div>
                                 </div>
@@ -948,8 +976,154 @@
             return filledTemplate;
         }
 
+        // Add Education Entry
+        let educationCount = 1;
+        function addEducation() {
+            const container = document.getElementById('educationContainer');
+            const newEntry = document.createElement('div');
+            newEntry.className = 'education-entry';
+            newEntry.setAttribute('data-index', educationCount);
+            newEntry.style.cssText = 'border: 2px solid #e5e5e5; padding: 20px; border-radius: 10px; margin-bottom: 20px; position: relative;';
+            newEntry.innerHTML = `
+                <button type="button" class="btn btn-sm btn-danger" onclick="removeEducation(this)" style="position: absolute; top: 10px; right: 10px;">
+                    <i class="fas fa-times"></i> Remove
+                </button>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="form-label">Degree/Qualification<span class="required">*</span></label>
+                            <input type="text" class="form-control-custom education-degree" placeholder="E.g., Bachelor of Science" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label">University/College Name<span class="required">*</span></label>
+                            <input type="text" class="form-control-custom education-university" placeholder="E.g., XYZ University" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label">Field of Study</label>
+                            <input type="text" class="form-control-custom education-field" placeholder="E.g., Computer Science">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label">Year of Completion</label>
+                            <input type="text" class="form-control-custom education-year" placeholder="E.g., 2020">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label">Grade/CGPA</label>
+                            <input type="text" class="form-control-custom education-grade" placeholder="E.g., 8.5 CGPA">
+                        </div>
+                    </div>
+                </div>
+            `;
+            container.appendChild(newEntry);
+            educationCount++;
+        }
+
+        function removeEducation(button) {
+            button.parentElement.remove();
+        }
+
+        // Add Work Experience Entry
+        let workCount = 1;
+        function addWorkExperience() {
+            const container = document.getElementById('workExperienceContainer');
+            const newEntry = document.createElement('div');
+            newEntry.className = 'work-entry';
+            newEntry.setAttribute('data-index', workCount);
+            newEntry.style.cssText = 'border: 2px solid #e5e5e5; padding: 20px; border-radius: 10px; margin-bottom: 20px; position: relative;';
+            newEntry.innerHTML = `
+                <button type="button" class="btn btn-sm btn-danger" onclick="removeWorkExperience(this)" style="position: absolute; top: 10px; right: 10px;">
+                    <i class="fas fa-times"></i> Remove
+                </button>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label">Job Title<span class="required">*</span></label>
+                            <input type="text" class="form-control-custom work-title" placeholder="E.g., Software Engineer" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label">Company Name<span class="required">*</span></label>
+                            <input type="text" class="form-control-custom work-company" placeholder="E.g., ABC Technologies" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label">Duration</label>
+                            <input type="text" class="form-control-custom work-duration" placeholder="E.g., Jan 2020 - Present">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="form-label">Location</label>
+                            <input type="text" class="form-control-custom work-location" placeholder="E.g., Mumbai, India">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label class="form-label">Responsibilities & Achievements</label>
+                            <textarea class="form-control-custom work-description" placeholder="Describe your key responsibilities and achievements..."></textarea>
+                        </div>
+                    </div>
+                </div>
+            `;
+            container.appendChild(newEntry);
+            workCount++;
+        }
+
+        function removeWorkExperience(button) {
+            button.parentElement.remove();
+        }
+
         // Get form data
         function getFormData() {
+            // Collect all education entries
+            const educationEntries = [];
+            document.querySelectorAll('.education-entry').forEach(entry => {
+                const degree = entry.querySelector('.education-degree').value;
+                const university = entry.querySelector('.education-university').value;
+                const field = entry.querySelector('.education-field').value;
+                const year = entry.querySelector('.education-year').value;
+                const grade = entry.querySelector('.education-grade').value;
+
+                if (degree || university) {
+                    educationEntries.push({
+                        degree: degree || '[Degree]',
+                        university: university || '[University]',
+                        field: field || '[Field]',
+                        year: year || '[Year]',
+                        grade: grade || '[Grade]'
+                    });
+                }
+            });
+
+            // Collect all work experience entries
+            const workEntries = [];
+            document.querySelectorAll('.work-entry').forEach(entry => {
+                const title = entry.querySelector('.work-title').value;
+                const company = entry.querySelector('.work-company').value;
+                const duration = entry.querySelector('.work-duration').value;
+                const location = entry.querySelector('.work-location').value;
+                const description = entry.querySelector('.work-description').value;
+
+                if (title || company) {
+                    workEntries.push({
+                        title: title || '[Job Title]',
+                        company: company || '[Company]',
+                        duration: duration || '[Duration]',
+                        location: location || '[Location]',
+                        description: description || '[Description]'
+                    });
+                }
+            });
+
             return {
                 documentType: document.getElementById('documentType').value || 'Biodata',
                 fullName: document.getElementById('fullName').value || '[Your Name]',
@@ -960,14 +1134,16 @@
                 city: document.getElementById('city').value || '[City]',
                 state: document.getElementById('state').value || '[State]',
                 country: document.getElementById('country').value || '[Country]',
-                education: document.getElementById('education').value || '[Educational Background]',
-                university: document.getElementById('university').value || '[University]',
-                fieldOfStudy: document.getElementById('fieldOfStudy').value || '[Field of Study]',
-                academicHonors: document.getElementById('academicHonors').value || '[Academic Honors]',
-                jobTitle: document.getElementById('jobTitle').value || '[Job Title]',
-                company: document.getElementById('company').value || '[Company]',
-                occupation: document.getElementById('occupation').value || '[Occupation]',
-                workExperience: document.getElementById('workExperience').value || '[Work Experience]',
+                educationEntries: educationEntries,
+                workEntries: workEntries,
+                // Legacy fields for backward compatibility
+                education: educationEntries[0]?.degree || '[Educational Background]',
+                university: educationEntries[0]?.university || '[University]',
+                fieldOfStudy: educationEntries[0]?.field || '[Field of Study]',
+                jobTitle: workEntries[0]?.title || '[Job Title]',
+                company: workEntries[0]?.company || '[Company]',
+                occupation: workEntries[0]?.title || '[Occupation]',
+                workExperience: workEntries.map(w => `${w.title} at ${w.company} (${w.duration})`).join(', ') || '[Work Experience]',
                 skills: document.getElementById('skills').value || '[Skills]',
                 fatherName: document.getElementById('fatherName').value || '[Father\'s Name]',
                 fatherOccupation: document.getElementById('fatherOccupation').value || '[Father\'s Occupation]',
