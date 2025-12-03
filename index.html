@@ -884,17 +884,18 @@
                 const userCredential = await window.firebaseSignIn(window.firebaseAuth, email, password);
                 const user = userCredential.user;
 
-                // Get user profile from Firestore
-                const userDoc = await window.firebaseGetDoc(window.firebaseDoc(window.firebaseDb, 'users', user.uid));
+                // Get customer profile from Firestore customers collection
+                const customerDoc = await window.firebaseGetDoc(window.firebaseDoc(window.firebaseDb, 'customers', user.uid));
 
-                if (userDoc.exists()) {
-                    const userData = userDoc.data();
-                    // Store user data in localStorage for quick access
+                if (customerDoc.exists()) {
+                    const customerData = customerDoc.data();
+                    // Store customer data in localStorage for quick access
                     localStorage.setItem('currentUser', JSON.stringify({
                         uid: user.uid,
-                        name: userData.name,
-                        email: userData.email,
-                        contact: userData.contact
+                        name: customerData.name,
+                        email: customerData.email,
+                        contact: customerData.contact,
+                        password: customerData.password
                     }));
 
                     toggleLoading(false);
@@ -904,7 +905,7 @@
                     }, 1500);
                 } else {
                     toggleLoading(false);
-                    showAlert('User profile not found. Please contact support.', 'error');
+                    showAlert('Customer profile not found. Please contact support.', 'error');
                 }
             } catch (error) {
                 toggleLoading(false);
@@ -957,21 +958,23 @@
                 const userCredential = await window.firebaseCreateUser(window.firebaseAuth, email, password);
                 const user = userCredential.user;
 
-                // Store user profile in Firestore
-                await window.firebaseSetDoc(window.firebaseDoc(window.firebaseDb, 'users', user.uid), {
+                // Store customer profile in Firestore customers collection with all input fields
+                await window.firebaseSetDoc(window.firebaseDoc(window.firebaseDb, 'customers', user.uid), {
                     name: name,
                     email: email,
                     contact: contact,
+                    password: password,
                     createdAt: new Date().toISOString(),
                     uid: user.uid
                 });
 
-                // Store user data in localStorage for quick access
+                // Store customer data in localStorage for quick access
                 localStorage.setItem('currentUser', JSON.stringify({
                     uid: user.uid,
                     name: name,
                     email: email,
-                    contact: contact
+                    contact: contact,
+                    password: password
                 }));
 
                 toggleLoading(false);
