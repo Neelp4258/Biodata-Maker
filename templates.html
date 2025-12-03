@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Choose Your Template - BiodataPro</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #f59e0b;
+            --dark-color: #1e293b;
+            --light-color: #f8fafc;
+            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        /* Navigation */
+        .navbar {
+            padding: 1rem 0;
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            font-family: 'Playfair Display', serif;
+            font-weight: 800;
+            font-size: 1.8rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+
+        .btn-logout {
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            background: #ef4444;
+            color: white;
+            border: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .btn-logout:hover {
+            background: #dc2626;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 3rem 0;
+            text-align: center;
+            background: white;
+            margin-bottom: 3rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .page-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--dark-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header p {
+            font-size: 1.1rem;
+            color: #64748b;
+        }
+
+        /* Template Cards */
+        .templates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .template-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .template-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.2);
+        }
+
+        .template-preview {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .template-preview-mini {
+            width: 210px;
+            height: 297px;
+            background: white;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            transform: scale(0.8);
+            transition: all 0.3s ease;
+        }
+
+        .template-card:hover .template-preview-mini {
+            transform: scale(0.85);
+        }
+
+        /* Template Preview Styles */
+        .preview-minimalist {
+            background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+        }
+
+        .preview-geometric {
+            background: linear-gradient(45deg, #000000 0%, #1a1a1a 100%);
+            position: relative;
+        }
+
+        .preview-geometric::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                60deg,
+                transparent,
+                transparent 20px,
+                rgba(212, 175, 55, 0.1) 20px,
+                rgba(212, 175, 55, 0.1) 40px
+            );
+        }
+
+        .preview-nature {
+            background: linear-gradient(135deg, #f7f4f0 0%, #e8e2d4 100%);
+            position: relative;
+        }
+
+        .preview-nature::after {
+            content: '🌿';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 60px;
+            opacity: 0.3;
+        }
+
+        .preview-artdeco {
+            background: linear-gradient(45deg, #0a0a0a 0%, #1a1a1a 100%);
+            position: relative;
+        }
+
+        .preview-artdeco::after {
+            content: '◆';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 80px;
+            color: #ffd700;
+            opacity: 0.4;
+        }
+
+        .preview-magazine {
+            background: linear-gradient(90deg, #2c3e50 30%, #ffffff 30%);
+        }
+
+        .preview-brutalist {
+            background: linear-gradient(135deg, #cccccc 0%, #e5e5e5 100%);
+            position: relative;
+        }
+
+        .preview-brutalist::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(26, 26, 26, 0.05) 10px,
+                rgba(26, 26, 26, 0.05) 20px
+            );
+        }
+
+        .preview-watercolor {
+            background: linear-gradient(135deg, #fef5f3 0%, #fff2f0 100%);
+            position: relative;
+        }
+
+        .preview-watercolor::after {
+            content: '✨';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 60px;
+            opacity: 0.5;
+        }
+
+        .preview-glass {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+        }
+
+        .preview-glass::after {
+            content: '💎';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 70px;
+            opacity: 0.4;
+        }
+
+        .preview-renaissance {
+            background: linear-gradient(135deg, #fef5e7 0%, #fff9e6 100%);
+            border: 8px solid #8b6f47;
+            position: relative;
+        }
+
+        .preview-renaissance::after {
+            content: '❦';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 80px;
+            color: #c19a6b;
+            opacity: 0.4;
+        }
+
+        .preview-tech {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            position: relative;
+            background-image:
+                linear-gradient(rgba(6, 182, 212, 0.2) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(6, 182, 212, 0.2) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+
+        .preview-tech::after {
+            content: '⚡';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 70px;
+            color: #06b6d4;
+            opacity: 0.6;
+        }
+
+        .template-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--gradient-primary);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 10;
+        }
+
+        .template-info {
+            padding: 1.5rem;
+        }
+
+        .template-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--dark-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .template-description {
+            color: #64748b;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .template-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-tag {
+            background: #f1f5f9;
+            color: #475569;
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .btn-select-template {
+            width: 100%;
+            padding: 0.9rem;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-select-template:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Modal for Preview */
+        .modal-preview {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 9999;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+
+        .modal-preview.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content-preview {
+            max-width: 800px;
+            width: 100%;
+            position: relative;
+        }
+
+        .modal-close {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 10000;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: #ef4444;
+            color: white;
+            transform: rotate(90deg);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .templates-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .template-preview {
+                height: 300px;
+            }
+        }
+
+        /* Loading Animation */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9998;
+        }
+
+        .loading-screen.active {
+            display: flex;
+        }
+
+        .spinner-large {
+            border: 4px solid #f3f4f6;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-id-card me-2"></i>BiodataPro
+            </a>
+            <div class="user-info ms-auto">
+                <div class="user-avatar" id="userAvatar"></div>
+                <span id="userName" class="d-none d-md-inline"></span>
+                <button class="btn-logout" onclick="logout()">
+                    <i class="fas fa-sign-out-alt me-2"></i>Logout
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="container">
+            <h1><i class="fas fa-palette me-3"></i>Choose Your Template</h1>
+            <p>Select a professionally designed template and create your perfect biodata</p>
+        </div>
+    </div>
+
+    <!-- Templates Grid -->
+    <div class="container">
+        <div class="templates-grid" id="templatesGrid">
+            <!-- Templates will be loaded here -->
+        </div>
+    </div>
+
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div>
+            <div class="spinner-large"></div>
+            <p class="text-center mt-3" style="color: #667eea; font-weight: 600;">Loading templates...</p>
+        </div>
+    </div>
+
+    <!-- Modal for Preview -->
+    <div class="modal-preview" id="previewModal">
+        <button class="modal-close" onclick="closePreview()">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="modal-content-preview">
+            <iframe id="previewFrame" style="width: 100%; height: 90vh; border: none; border-radius: 10px; box-shadow: 0 20px 60px rgba(0,0,0,0.5);"></iframe>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Template data
+        const templates = [
+            {
+                id: 1,
+                name: 'Minimalist Elegance',
+                file: 'template-2.html',
+                description: 'Clean and professional design with elegant typography. Perfect for a sophisticated look.',
+                features: ['Clean Layout', 'Professional', 'Easy to Read'],
+                previewClass: 'preview-minimalist',
+                badge: 'Popular'
+            },
+            {
+                id: 2,
+                name: 'Geometric Luxury',
+                file: 'template-1html.html',
+                description: 'Luxurious dark theme with golden accents and geometric patterns.',
+                features: ['Luxury Design', 'Dark Theme', 'Golden Accents'],
+                previewClass: 'preview-geometric',
+                badge: 'Premium'
+            },
+            {
+                id: 3,
+                name: 'Organic Nature',
+                file: 'template-3.html',
+                description: 'Nature-inspired design with organic shapes and earthy colors.',
+                features: ['Nature Theme', 'Organic', 'Calming Colors'],
+                previewClass: 'preview-nature',
+                badge: 'Trending'
+            },
+            {
+                id: 4,
+                name: 'Art Deco Luxe',
+                file: 'template-4.html',
+                description: 'Art Deco inspired with bold geometric patterns and golden elements.',
+                features: ['Art Deco', 'Bold', 'Vintage Luxury'],
+                previewClass: 'preview-artdeco',
+                badge: 'Premium'
+            },
+            {
+                id: 5,
+                name: 'Magazine Editorial',
+                file: 'template-5.html',
+                description: 'Editorial magazine-style layout with sophisticated typography.',
+                features: ['Editorial', 'Modern', 'Sidebar Layout'],
+                previewClass: 'preview-magazine',
+                badge: 'Popular'
+            },
+            {
+                id: 6,
+                name: 'Brutalist Concrete',
+                file: 'template-6.html',
+                description: 'Raw industrial design with bold typography and brutalist aesthetics.',
+                features: ['Industrial', 'Bold', 'Unique'],
+                previewClass: 'preview-brutalist',
+                badge: 'Unique'
+            },
+            {
+                id: 7,
+                name: 'Watercolor Dreams',
+                file: 'template-7.html',
+                description: 'Artistic watercolor-inspired design with soft colors and flowing elements.',
+                features: ['Artistic', 'Soft Colors', 'Creative'],
+                previewClass: 'preview-watercolor',
+                badge: 'Trending'
+            },
+            {
+                id: 8,
+                name: 'Modern Corporate Glass',
+                file: 'template-8.html',
+                description: 'Ultra-modern glassmorphism design with gradient backgrounds and sleek cards.',
+                features: ['Glassmorphism', 'Modern', 'Corporate'],
+                previewClass: 'preview-glass',
+                badge: 'New'
+            },
+            {
+                id: 9,
+                name: 'Classic Renaissance',
+                file: 'template-9.html',
+                description: 'Vintage-inspired design with ornamental borders and classic serif typography.',
+                features: ['Vintage', 'Ornamental', 'Classic'],
+                previewClass: 'preview-renaissance',
+                badge: 'Premium'
+            },
+            {
+                id: 10,
+                name: 'Tech Futuristic',
+                file: 'template-10.html',
+                description: 'Cyberpunk-inspired design with neon accents and tech grid patterns.',
+                features: ['Futuristic', 'Tech', 'Cyberpunk'],
+                previewClass: 'preview-tech',
+                badge: 'New'
+            }
+        ];
+
+        // Check if user is logged in
+        function checkAuth() {
+            const currentUser = localStorage.getItem('currentUser');
+            if (!currentUser) {
+                window.location.href = 'index.html';
+                return null;
+            }
+            return JSON.parse(currentUser);
+        }
+
+        // Display user info
+        function displayUserInfo() {
+            const user = checkAuth();
+            if (user) {
+                document.getElementById('userName').textContent = user.name;
+                document.getElementById('userAvatar').textContent = user.name.charAt(0).toUpperCase();
+            }
+        }
+
+        // Logout function
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                localStorage.removeItem('currentUser');
+                window.location.href = 'index.html';
+            }
+        }
+
+        // Load templates
+        function loadTemplates() {
+            const grid = document.getElementById('templatesGrid');
+            grid.innerHTML = '';
+
+            templates.forEach(template => {
+                const card = document.createElement('div');
+                card.className = 'template-card';
+                card.innerHTML = `
+                    <div class="template-preview">
+                        <div class="template-preview-mini ${template.previewClass}"></div>
+                        <div class="template-badge">${template.badge}</div>
+                    </div>
+                    <div class="template-info">
+                        <div class="template-name">${template.name}</div>
+                        <div class="template-description">${template.description}</div>
+                        <div class="template-features">
+                            ${template.features.map(f => `<span class="feature-tag">${f}</span>`).join('')}
+                        </div>
+                        <button class="btn-select-template" onclick="selectTemplate(${template.id})">
+                            <i class="fas fa-check-circle me-2"></i>Select This Template
+                        </button>
+                    </div>
+                `;
+
+                // Add preview on click
+                const previewDiv = card.querySelector('.template-preview');
+                previewDiv.addEventListener('click', () => previewTemplate(template.file));
+
+                grid.appendChild(card);
+            });
+        }
+
+        // Preview template
+        function previewTemplate(file) {
+            const modal = document.getElementById('previewModal');
+            const frame = document.getElementById('previewFrame');
+            frame.src = file;
+            modal.classList.add('active');
+        }
+
+        // Close preview
+        function closePreview() {
+            const modal = document.getElementById('previewModal');
+            modal.classList.remove('active');
+            document.getElementById('previewFrame').src = '';
+        }
+
+        // Select template
+        function selectTemplate(templateId) {
+            const template = templates.find(t => t.id === templateId);
+            if (template) {
+                // Show loading
+                document.getElementById('loadingScreen').classList.add('active');
+
+                // Save selected template
+                localStorage.setItem('selectedTemplate', JSON.stringify(template));
+
+                // Redirect to form page
+                setTimeout(() => {
+                    window.location.href = 'form-fill.html';
+                }, 1000);
+            }
+        }
+
+        // Close modal on ESC key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closePreview();
+            }
+        });
+
+        // Close modal on outside click
+        document.getElementById('previewModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closePreview();
+            }
+        });
+
+        // Initialize
+        window.addEventListener('load', function() {
+            displayUserInfo();
+            loadTemplates();
+        });
+    </script>
+</body>
+</html>

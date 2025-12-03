@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fill Your Details - BiodataPro</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --dark-color: #1e293b;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        /* Navigation */
+        .navbar {
+            padding: 1rem 0;
+            background: rgba(255, 255, 255, 0.95) !important;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            font-family: 'Playfair Display', serif;
+            font-weight: 800;
+            font-size: 1.8rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .btn-back {
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            background: #64748b;
+            color: white;
+            border: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-back:hover {
+            background: #475569;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Main Container */
+        .main-container {
+            padding: 2rem 0 4rem;
+        }
+
+        .form-container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .section-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark-color);
+            margin: 0;
+        }
+
+        .form-section {
+            margin-bottom: 2.5rem;
+        }
+
+        .form-section-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--dark-color);
+            margin-bottom: 1.5rem;
+            padding-left: 1rem;
+            border-left: 4px solid #667eea;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: var(--dark-color);
+            margin-bottom: 0.5rem;
+            display: block;
+            font-size: 0.95rem;
+        }
+
+        .required {
+            color: #ef4444;
+            margin-left: 4px;
+        }
+
+        .form-control-custom {
+            width: 100%;
+            padding: 0.9rem 1.2rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .form-control-custom:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+        }
+
+        textarea.form-control-custom {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        /* Preview Container */
+        .preview-container {
+            position: sticky;
+            top: 100px;
+            background: white;
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            max-height: calc(100vh - 120px);
+            overflow-y: auto;
+        }
+
+        .preview-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .preview-title {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: var(--dark-color);
+        }
+
+        .btn-preview-full {
+            padding: 0.5rem 1rem;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-preview-full:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .preview-frame-container {
+            width: 100%;
+            aspect-ratio: 210 / 297;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            overflow: hidden;
+            background: white;
+        }
+
+        .preview-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+            transform-origin: top left;
+        }
+
+        /* Action Buttons */
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 2px solid #e2e8f0;
+        }
+
+        .btn-save {
+            flex: 1;
+            padding: 1rem 2rem;
+            background: #10b981;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-save:hover {
+            background: #059669;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+        }
+
+        .btn-download {
+            flex: 1;
+            padding: 1rem 2rem;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-download:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Alert */
+        .alert-custom {
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            display: none;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .alert-success {
+            background: #d1fae5;
+            color: #065f46;
+            border: 1px solid #6ee7b7;
+        }
+
+        .alert-info {
+            background: #dbeafe;
+            color: #1e40af;
+            border: 1px solid #93c5fd;
+        }
+
+        /* Progress Bar */
+        .progress-bar-custom {
+            height: 6px;
+            background: #e2e8f0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--gradient-primary);
+            transition: width 0.3s ease;
+            border-radius: 10px;
+        }
+
+        .progress-text {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #64748b;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .preview-container {
+                position: relative;
+                top: 0;
+                margin-top: 2rem;
+                max-height: none;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .form-container {
+                padding: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            .form-section-title {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Loading Overlay */
+        .loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .loading-overlay.active {
+            display: flex;
+        }
+
+        .spinner {
+            border: 4px solid #f3f4f6;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fas fa-id-card me-2"></i>BiodataPro
+            </a>
+            <div class="ms-auto">
+                <a href="templates.html" class="btn-back">
+                    <i class="fas fa-arrow-left me-2"></i>Back to Templates
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <div class="container">
+            <div id="alert" class="alert-custom"></div>
+
+            <div class="row">
+                <!-- Form Column -->
+                <div class="col-lg-7">
+                    <div class="form-container">
+                        <div class="section-header">
+                            <div class="section-icon">
+                                <i class="fas fa-edit"></i>
+                            </div>
+                            <div>
+                                <h1 class="section-title">Fill Your Details</h1>
+                                <p class="mb-0" style="color: #64748b;" id="templateName">Selected Template</p>
+                            </div>
+                        </div>
+
+                        <div class="progress-text">Completion: <span id="progressPercent">0%</span></div>
+                        <div class="progress-bar-custom">
+                            <div class="progress-fill" id="progressFill"></div>
+                        </div>
+
+                        <form id="biodataForm">
+                            <!-- Personal Information -->
+                            <div class="form-section">
+                                <h3 class="form-section-title">
+                                    <i class="fas fa-user me-2"></i>Personal Information
+                                </h3>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="form-label">Full Name<span class="required">*</span></label>
+                                            <input type="text" class="form-control-custom" id="fullName" name="fullName" placeholder="Enter your full name" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="form-label">Date of Birth<span class="required">*</span></label>
+                                            <input type="date" class="form-control-custom" id="dob" name="dob" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="form-label">Age<span class="required">*</span></label>
+                                            <input type="number" class="form-control-custom" id="age" name="age" placeholder="Enter your age" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="form-label">Email Address<span class="required">*</span></label>
+                                            <input type="email" class="form-control-custom" id="email" name="email" placeholder="your.email@example.com" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="form-label">Contact Number<span class="required">*</span></label>
+                                            <input type="tel" class="form-control-custom" id="phone" name="phone" placeholder="+1 234 567 8900" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Education -->
+                            <div class="form-section">
+                                <h3 class="form-section-title">
+                                    <i class="fas fa-graduation-cap me-2"></i>Education
+                                </h3>
+                                <div class="form-group">
+                                    <label class="form-label">Educational Background<span class="required">*</span></label>
+                                    <textarea class="form-control-custom" id="education" name="education" placeholder="E.g., Bachelor of Science in Computer Science, XYZ University, 2020" required></textarea>
+                                </div>
+                            </div>
+
+                            <!-- Professional Background -->
+                            <div class="form-section">
+                                <h3 class="form-section-title">
+                                    <i class="fas fa-briefcase me-2"></i>Professional Background
+                                </h3>
+                                <div class="form-group">
+                                    <label class="form-label">Current Occupation<span class="required">*</span></label>
+                                    <input type="text" class="form-control-custom" id="occupation" name="occupation" placeholder="E.g., Software Engineer, Marketing Manager" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Work Experience</label>
+                                    <textarea class="form-control-custom" id="workExperience" name="workExperience" placeholder="Describe your work experience, job roles, and achievements..."></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Skills & Expertise</label>
+                                    <input type="text" class="form-control-custom" id="skills" name="skills" placeholder="E.g., Project Management, Communication, Technical Skills">
+                                </div>
+                            </div>
+
+                            <!-- Family Background -->
+                            <div class="form-section">
+                                <h3 class="form-section-title">
+                                    <i class="fas fa-home me-2"></i>Family Background
+                                </h3>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="form-label">Father's Name<span class="required">*</span></label>
+                                            <input type="text" class="form-control-custom" id="fatherName" name="fatherName" placeholder="Enter father's name" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="form-label">Father's Occupation</label>
+                                            <input type="text" class="form-control-custom" id="fatherOccupation" name="fatherOccupation" placeholder="Enter father's occupation">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="form-label">Mother's Name<span class="required">*</span></label>
+                                            <input type="text" class="form-control-custom" id="motherName" name="motherName" placeholder="Enter mother's name" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label class="form-label">Mother's Occupation</label>
+                                            <input type="text" class="form-control-custom" id="motherOccupation" name="motherOccupation" placeholder="Enter mother's occupation">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label class="form-label">Complete Address<span class="required">*</span></label>
+                                            <textarea class="form-control-custom" id="address" name="address" placeholder="Enter your complete address including city, state, and country" required></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Additional Information -->
+                            <div class="form-section">
+                                <h3 class="form-section-title">
+                                    <i class="fas fa-info-circle me-2"></i>Additional Information
+                                </h3>
+                                <div class="form-group">
+                                    <label class="form-label">Hobbies & Interests</label>
+                                    <input type="text" class="form-control-custom" id="hobbies" name="hobbies" placeholder="E.g., Reading, Photography, Sports">
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Additional Notes</label>
+                                    <textarea class="form-control-custom" id="additionalNotes" name="additionalNotes" placeholder="Any additional information you'd like to include..."></textarea>
+                                </div>
+                            </div>
+
+                            <!-- Action Buttons -->
+                            <div class="action-buttons">
+                                <button type="button" class="btn-save" onclick="saveData()">
+                                    <i class="fas fa-save me-2"></i>Save Progress
+                                </button>
+                                <button type="button" class="btn-download" onclick="generatePDF()">
+                                    <i class="fas fa-download me-2"></i>Download PDF
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Preview Column -->
+                <div class="col-lg-5">
+                    <div class="preview-container">
+                        <div class="preview-header">
+                            <span class="preview-title">
+                                <i class="fas fa-eye me-2"></i>Live Preview
+                            </span>
+                            <button class="btn-preview-full" onclick="openFullPreview()">
+                                <i class="fas fa-expand me-1"></i>Full View
+                            </button>
+                        </div>
+                        <div class="preview-frame-container">
+                            <iframe id="previewFrame" class="preview-frame"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="text-center">
+            <div class="spinner"></div>
+            <p class="mt-3" style="color: #667eea; font-weight: 600;">Generating PDF...</p>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jsPDF for PDF generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+    <script>
+        let selectedTemplate = null;
+
+        // Check authentication and load template
+        function init() {
+            const currentUser = localStorage.getItem('currentUser');
+            if (!currentUser) {
+                window.location.href = 'index.html';
+                return;
+            }
+
+            const template = localStorage.getItem('selectedTemplate');
+            if (!template) {
+                window.location.href = 'templates.html';
+                return;
+            }
+
+            selectedTemplate = JSON.parse(template);
+            document.getElementById('templateName').textContent = selectedTemplate.name;
+
+            // Load saved data if exists
+            loadSavedData();
+
+            // Setup auto-save and preview update
+            setupFormListeners();
+        }
+
+        // Setup form listeners
+        function setupFormListeners() {
+            const form = document.getElementById('biodataForm');
+            const inputs = form.querySelectorAll('input, textarea');
+
+            inputs.forEach(input => {
+                input.addEventListener('input', () => {
+                    updateProgress();
+                    updatePreview();
+                });
+            });
+
+            // Initial preview update
+            updatePreview();
+        }
+
+        // Update progress bar
+        function updateProgress() {
+            const form = document.getElementById('biodataForm');
+            const required = form.querySelectorAll('[required]');
+            let filled = 0;
+
+            required.forEach(input => {
+                if (input.value.trim() !== '') {
+                    filled++;
+                }
+            });
+
+            const percent = Math.round((filled / required.length) * 100);
+            document.getElementById('progressPercent').textContent = percent + '%';
+            document.getElementById('progressFill').style.width = percent + '%';
+        }
+
+        // Update preview
+        function updatePreview() {
+            const formData = getFormData();
+            const frame = document.getElementById('previewFrame');
+
+            // Create preview HTML with form data
+            const previewHTML = generatePreviewHTML(formData);
+
+            const blob = new Blob([previewHTML], { type: 'text/html' });
+            frame.src = URL.createObjectURL(blob);
+        }
+
+        // Get form data
+        function getFormData() {
+            return {
+                fullName: document.getElementById('fullName').value || '[Your Name]',
+                dob: document.getElementById('dob').value || '[Date of Birth]',
+                age: document.getElementById('age').value || '[Age]',
+                email: document.getElementById('email').value || '[Email]',
+                phone: document.getElementById('phone').value || '[Phone]',
+                education: document.getElementById('education').value || '[Educational Background]',
+                occupation: document.getElementById('occupation').value || '[Occupation]',
+                workExperience: document.getElementById('workExperience').value || '[Work Experience]',
+                skills: document.getElementById('skills').value || '[Skills]',
+                fatherName: document.getElementById('fatherName').value || '[Father\'s Name]',
+                fatherOccupation: document.getElementById('fatherOccupation').value || '[Father\'s Occupation]',
+                motherName: document.getElementById('motherName').value || '[Mother\'s Name]',
+                motherOccupation: document.getElementById('motherOccupation').value || '[Mother\'s Occupation]',
+                address: document.getElementById('address').value || '[Address]',
+                hobbies: document.getElementById('hobbies').value || '[Hobbies]',
+                additionalNotes: document.getElementById('additionalNotes').value || '[Additional Information]'
+            };
+        }
+
+        // Generate preview HTML (simplified - you'll need to customize based on template)
+        function generatePreviewHTML(data) {
+            return `
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <meta charset="UTF-8">
+                    <style>
+                        body { font-family: Arial, sans-serif; padding: 20px; background: #f5f5f5; }
+                        .preview-card { background: white; padding: 30px; border-radius: 10px; }
+                        h1 { color: #667eea; margin-bottom: 20px; }
+                        .section { margin-bottom: 20px; }
+                        .section-title { font-weight: bold; color: #333; margin-bottom: 10px; border-bottom: 2px solid #667eea; padding-bottom: 5px; }
+                        .field { margin-bottom: 10px; }
+                        .label { font-weight: 600; color: #666; }
+                        .value { color: #333; }
+                    </style>
+                </head>
+                <body>
+                    <div class="preview-card">
+                        <h1>${data.fullName}</h1>
+                        <div class="section">
+                            <div class="section-title">Personal Information</div>
+                            <div class="field"><span class="label">DOB:</span> ${data.dob}</div>
+                            <div class="field"><span class="label">Age:</span> ${data.age} years</div>
+                            <div class="field"><span class="label">Email:</span> ${data.email}</div>
+                            <div class="field"><span class="label">Phone:</span> ${data.phone}</div>
+                        </div>
+                        <div class="section">
+                            <div class="section-title">Education</div>
+                            <div class="field">${data.education}</div>
+                        </div>
+                        <div class="section">
+                            <div class="section-title">Professional Background</div>
+                            <div class="field"><span class="label">Occupation:</span> ${data.occupation}</div>
+                            <div class="field"><span class="label">Experience:</span> ${data.workExperience}</div>
+                            <div class="field"><span class="label">Skills:</span> ${data.skills}</div>
+                        </div>
+                        <div class="section">
+                            <div class="section-title">Family Background</div>
+                            <div class="field"><span class="label">Father:</span> ${data.fatherName} (${data.fatherOccupation})</div>
+                            <div class="field"><span class="label">Mother:</span> ${data.motherName} (${data.motherOccupation})</div>
+                            <div class="field"><span class="label">Address:</span> ${data.address}</div>
+                        </div>
+                    </div>
+                </body>
+                </html>
+            `;
+        }
+
+        // Save data to localStorage
+        function saveData() {
+            const formData = getFormData();
+            localStorage.setItem('biodataFormData', JSON.stringify(formData));
+            showAlert('Your progress has been saved successfully!', 'success');
+        }
+
+        // Load saved data
+        function loadSavedData() {
+            const savedData = localStorage.getItem('biodataFormData');
+            if (savedData) {
+                const data = JSON.parse(savedData);
+                Object.keys(data).forEach(key => {
+                    const element = document.getElementById(key);
+                    if (element && data[key] !== `[${key}]`) {
+                        element.value = data[key];
+                    }
+                });
+                updateProgress();
+                showAlert('Previous data loaded successfully!', 'info');
+            }
+        }
+
+        // Generate PDF
+        function generatePDF() {
+            // Validate required fields
+            const form = document.getElementById('biodataForm');
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                showAlert('Please fill in all required fields before downloading.', 'error');
+                return;
+            }
+
+            showAlert('Generating your PDF... Please wait.', 'info');
+            document.getElementById('loadingOverlay').classList.add('active');
+
+            // Get the iframe content
+            const frame = document.getElementById('previewFrame');
+
+            setTimeout(() => {
+                // Use html2canvas to capture the preview
+                html2canvas(frame.contentDocument.body, {
+                    scale: 2,
+                    useCORS: true,
+                    allowTaint: true,
+                    backgroundColor: '#ffffff'
+                }).then(canvas => {
+                    const imgData = canvas.toDataURL('image/png');
+
+                    // Create PDF
+                    const { jsPDF } = window.jspdf;
+                    const pdf = new jsPDF({
+                        orientation: 'portrait',
+                        unit: 'mm',
+                        format: 'a4'
+                    });
+
+                    const imgWidth = 210;
+                    const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+                    pdf.addImage(imgData, 'PNG', 0, 0, imgWidth, imgHeight);
+
+                    // Save PDF
+                    const fileName = `Biodata_${getFormData().fullName.replace(/\s+/g, '_')}_${new Date().getTime()}.pdf`;
+                    pdf.save(fileName);
+
+                    document.getElementById('loadingOverlay').classList.remove('active');
+                    showAlert('PDF downloaded successfully!', 'success');
+                }).catch(error => {
+                    console.error('Error generating PDF:', error);
+                    document.getElementById('loadingOverlay').classList.remove('active');
+                    showAlert('Error generating PDF. Please try again.', 'error');
+                });
+            }, 500);
+        }
+
+        // Open full preview
+        function openFullPreview() {
+            const frame = document.getElementById('previewFrame');
+            const newWindow = window.open('', '_blank');
+            newWindow.document.write(frame.contentDocument.documentElement.outerHTML);
+        }
+
+        // Show alert
+        function showAlert(message, type) {
+            const alert = document.getElementById('alert');
+            alert.textContent = message;
+            alert.className = `alert-custom alert-${type}`;
+            alert.style.display = 'block';
+
+            setTimeout(() => {
+                alert.style.display = 'none';
+            }, 5000);
+        }
+
+        // Initialize on load
+        window.addEventListener('load', init);
+    </script>
+</body>
+</html>
