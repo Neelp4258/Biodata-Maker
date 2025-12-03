@@ -897,14 +897,19 @@
         // Check authentication state
         onAuthStateChanged(auth, (user) => {
             if (user) {
-                // Check if session is expired
-                if (!checkSessionExpiry()) {
-                    // Force logout if session expired
+                console.log('User is signed in:', user.email);
+
+                // Only check session expiry if we already have a loginTimestamp
+                // This prevents race conditions during new login/signup
+                const loginTimestamp = localStorage.getItem('loginTimestamp');
+                if (loginTimestamp && !checkSessionExpiry()) {
+                    // Force logout only if session is expired
+                    console.log('Session expired, logging out');
                     signOut(auth);
                     return;
                 }
 
-                console.log('User is signed in:', user.email);
+                // Store Firebase user info
                 localStorage.setItem('firebaseUser', JSON.stringify({
                     uid: user.uid,
                     email: user.email,
@@ -998,6 +1003,9 @@
             hideAlert();
 
             try {
+                // Set login timestamp IMMEDIATELY to prevent race conditions
+                localStorage.setItem('loginTimestamp', Date.now().toString());
+
                 // Sign in with Firebase Authentication
                 const userCredential = await window.firebaseSignIn(window.firebaseAuth, email, password);
                 const user = userCredential.user;
@@ -1015,9 +1023,6 @@
                         contact: customerData.contact,
                         password: customerData.password
                     }));
-
-                    // Set login timestamp for 5-day session management
-                    localStorage.setItem('loginTimestamp', Date.now().toString());
 
                     toggleLoading(false);
                     showAlert('Login successful! Redirecting...', 'success');
@@ -1075,6 +1080,9 @@
             hideAlert();
 
             try {
+                // Set login timestamp IMMEDIATELY to prevent race conditions
+                localStorage.setItem('loginTimestamp', Date.now().toString());
+
                 // Create user with Firebase Authentication
                 const userCredential = await window.firebaseCreateUser(window.firebaseAuth, email, password);
                 const user = userCredential.user;
@@ -1097,9 +1105,6 @@
                     contact: contact,
                     password: password
                 }));
-
-                // Set login timestamp for 5-day session management
-                localStorage.setItem('loginTimestamp', Date.now().toString());
 
                 toggleLoading(false);
                 showAlert('Account created successfully! Redirecting...', 'success');
