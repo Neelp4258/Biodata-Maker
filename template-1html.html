@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biodata Template 2 - Geometric Luxury</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&family=Cormorant+Garamond:wght@400;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: #1a1a1a;
+            background: #000;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .page {
+            width: 210mm;
+            height: 296.8mm;
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(45deg, #000000 0%, #1a1a1a 50%, #000000 100%);
+        }
+
+        .geometric-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(60deg, transparent 0%, transparent 40%, rgba(212, 175, 55, 0.1) 40%, rgba(212, 175, 55, 0.1) 60%, transparent 60%),
+                linear-gradient(-60deg, transparent 0%, transparent 70%, rgba(212, 175, 55, 0.05) 70%, rgba(212, 175, 55, 0.05) 80%, transparent 80%);
+            pointer-events: none;
+        }
+
+        .main-container {
+            position: relative;
+            z-index: 2;
+            padding: 20mm;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: 15mm;
+            position: relative;
+        }
+
+        .name-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .name-container::before,
+        .name-container::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, #d4af37, #f4d03f);
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .name-container::before {
+            left: -80px;
+        }
+
+        .name-container::after {
+            right: -80px;
+        }
+
+        .name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 36pt;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 5mm;
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .subtitle {
+            font-size: 12pt;
+            font-weight: 300;
+            color: #d4af37;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20mm;
+            flex: 1;
+        }
+
+        .section-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 15px;
+            padding: 15mm;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 20pt;
+            font-weight: 600;
+            color: #d4af37;
+            margin-bottom: 10mm;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .info-list {
+            position: relative;
+            z-index: 2;
+        }
+
+        .info-item {
+            margin-bottom: 8mm;
+            display: flex;
+            flex-direction: column;
+            gap: 2mm;
+        }
+
+        .info-label {
+            font-size: 9pt;
+            font-weight: 600;
+            color: #d4af37;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .info-value {
+            font-size: 11pt;
+            color: #ffffff;
+            font-weight: 300;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        @media print {
+            body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="geometric-overlay"></div>
+        
+        <div class="main-container">
+            <div class="header-section">
+                <div class="name-container">
+                    <div class="name">[Your Name]</div>
+                </div>
+                <div class="subtitle">Luxury Profile</div>
+            </div>
+            
+            <div class="content-grid">
+                <div class="section-card">
+                    <div class="section-title">Personal Details</div>
+                    <div class="info-list">
+                        <div class="info-item">
+                            <div class="info-label">Name</div>
+                            <div class="info-value">[Full Name]</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Birth Date</div>
+                            <div class="info-value">[Date of Birth]</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Education</div>
+                            <div class="info-value">[Educational Background]</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Contact</div>
+                            <div class="info-value">[Phone Number]</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section-card">
+                    <div class="section-title">Family Background</div>
+                    <div class="info-list">
+                        <div class="info-item">
+                            <div class="info-label">Father</div>
+                            <div class="info-value">[Father's Name]</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Mother</div>
+                            <div class="info-value">[Mother's Name]</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Address</div>
+                            <div class="info-value">[Complete Address]</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

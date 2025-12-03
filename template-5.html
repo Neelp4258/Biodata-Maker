@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biodata Template 5 - Magazine Editorial</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&family=Lato:wght@300;400;700;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            color: #2c3e50;
+            background: #ffffff;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .page {
+            width: 210mm;
+            height: 296.8mm;
+            overflow: hidden;
+            position: relative;
+            background: #ffffff;
+        }
+
+        .magazine-grid {
+            height: 100%;
+            display: grid;
+            grid-template-columns: 70mm 1fr;
+            grid-template-rows: auto 1fr auto;
+            grid-template-areas:
+                "sidebar header"
+                "sidebar content"
+                "sidebar footer";
+        }
+
+        .sidebar {
+            grid-area: sidebar;
+            background: #2c3e50;
+            padding: 20mm 15mm;
+            color: white;
+            position: relative;
+        }
+
+        .sidebar::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 3px;
+            height: 100%;
+            background: linear-gradient(180deg, #e74c3c 0%, #c0392b 100%);
+        }
+
+        .profile-section {
+            margin-bottom: 20mm;
+        }
+
+        .name {
+            font-family: 'Merriweather', serif;
+            font-size: 24pt;
+            font-weight: 700;
+            color: white;
+            line-height: 1.2;
+            margin-bottom: 5mm;
+            writing-mode: horizontal-tb;
+        }
+
+        .tagline {
+            font-size: 11pt;
+            font-weight: 300;
+            color: #bdc3c7;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 1px solid #34495e;
+            padding-bottom: 5mm;
+            margin-bottom: 10mm;
+        }
+
+        .sidebar-section {
+            margin-bottom: 15mm;
+        }
+
+        .sidebar-title {
+            font-size: 12pt;
+            font-weight: 700;
+            color: #e74c3c;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6mm;
+        }
+
+        .sidebar-item {
+            margin-bottom: 4mm;
+            font-size: 9pt;
+            line-height: 1.4;
+        }
+
+        .sidebar-label {
+            color: #95a5a6;
+            font-weight: 400;
+            display: block;
+            margin-bottom: 1mm;
+        }
+
+        .sidebar-value {
+            color: white;
+            font-weight: 300;
+        }
+
+        .header {
+            grid-area: header;
+            padding: 20mm 20mm 10mm 20mm;
+            border-bottom: 2px solid #ecf0f1;
+        }
+
+        .header-title {
+            font-family: 'Merriweather', serif;
+            font-size: 32pt;
+            font-weight: 300;
+            color: #2c3e50;
+            margin-bottom: 5mm;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .header-subtitle {
+            font-size: 14pt;
+            color: #e74c3c;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .content {
+            grid-area: content;
+            padding: 20mm;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15mm;
+            align-content: start;
+        }
+
+        .content-section {
+            margin-bottom: 15mm;
+        }
+
+        .section-title {
+            font-family: 'Merriweather', serif;
+            font-size: 18pt;
+            font-weight: 400;
+            color: #2c3e50;
+            margin-bottom: 8mm;
+            position: relative;
+            padding-bottom: 3mm;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 30mm;
+            height: 1px;
+            background: #e74c3c;
+        }
+
+        .info-item {
+            margin-bottom: 6mm;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 5mm;
+            align-items: baseline;
+        }
+
+        .info-label {
+            font-size: 10pt;
+            font-weight: 700;
+            color: #7f8c8d;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .info-value {
+            font-size: 11pt;
+            color: #2c3e50;
+            font-weight: 400;
+            line-height: 1.4;
+        }
+
+        .footer {
+            grid-area: footer;
+            padding: 10mm 20mm;
+            background: #ecf0f1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-text {
+            font-size: 9pt;
+            color: #7f8c8d;
+            font-weight: 300;
+        }
+
+        .footer-accent {
+            width: 50mm;
+            height: 2px;
+            background: linear-gradient(90deg, #e74c3c, transparent);
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        @media print {
+            body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="magazine-grid">
+            <div class="sidebar">
+                <div class="profile-section">
+                    <div class="name">[Your Name]</div>
+                    <div class="tagline">Professional Profile</div>
+                </div>
+
+                <div class="sidebar-section">
+                    <div class="sidebar-title">Contact</div>
+                    <div class="sidebar-item">
+                        <span class="sidebar-label">Phone</span>
+                        <span class="sidebar-value">[Phone Number]</span>
+                    </div>
+                    <div class="sidebar-item">
+                        <span class="sidebar-label">Email</span>
+                        <span class="sidebar-value">[Email Address]</span>
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
+                    <div class="sidebar-title">Location</div>
+                    <div class="sidebar-item">
+                        <span class="sidebar-value">[City, State]<br>[Country]</span>
+                    </div>
+                </div>
+
+                <div class="sidebar-section">
+                    <div class="sidebar-title">Quick Info</div>
+                    <div class="sidebar-item">
+                        <span class="sidebar-label">Age</span>
+                        <span class="sidebar-value">[Age] years</span>
+                    </div>
+                    <div class="sidebar-item">
+                        <span class="sidebar-label">Education</span>
+                        <span class="sidebar-value">[Education Level]</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="header">
+                <div class="header-title">Personal</div>
+                <div class="header-subtitle">Biography</div>
+            </div>
+
+            <div class="content">
+                <div class="content-section">
+                    <div class="section-title">Personal Details</div>
+                    <div class="info-item">
+                        <div class="info-label">Full Name</div>
+                        <div class="info-value">[Complete Name]</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Date of Birth</div>
+                        <div class="info-value">[Birth Date]</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Education</div>
+                        <div class="info-value">[Educational Background]</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Occupation</div>
+                        <div class="info-value">[Current Occupation]</div>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <div class="section-title">Family Background</div>
+                    <div class="info-item">
+                        <div class="info-label">Father</div>
+                        <div class="info-value">[Father's Name]</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Mother</div>
+                        <div class="info-value">[Mother's Name]</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Address</div>
+                        <div class="info-value">[Complete Address Details]</div>
+                    </div>
+                </div>
+
+                <div class="content-section full-width">
+                    <div class="section-title">Additional Information</div>
+                    <div class="info-item">
+                        <div class="info-label">Notes</div>
+                        <div class="info-value">This magazine-style biodata template features a sophisticated editorial layout with professional typography and clean organizational structure.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer">
+                <div class="footer-text">Professional Biodata Template</div>
+                <div class="footer-accent"></div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

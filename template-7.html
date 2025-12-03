@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biodata Template 10 - Watercolor Dreams</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Nunito:wght@300;400;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            color: #4a5568;
+            background: #fef5f3;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .page {
+            width: 210mm;
+            height: 296.8mm;
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(135deg, #fef5f3 0%, #fff2f0 50%, #fdf4f0 100%);
+        }
+
+        .watercolor-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse 200px 150px at 15% 25%, rgba(255, 182, 193, 0.3) 0%, transparent 60%),
+                radial-gradient(ellipse 250px 180px at 85% 15%, rgba(173, 216, 230, 0.25) 0%, transparent 60%),
+                radial-gradient(ellipse 180px 220px at 70% 80%, rgba(221, 160, 221, 0.2) 0%, transparent 60%),
+                radial-gradient(ellipse 300px 200px at 20% 70%, rgba(255, 218, 185, 0.25) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .watercolor-splash {
+            position: absolute;
+            border-radius: 50% 40% 60% 30%;
+            filter: blur(2px);
+            animation: float-gentle 20s ease-in-out infinite;
+        }
+
+        .splash1 {
+            width: 120px;
+            height: 160px;
+            top: 10%;
+            right: 15%;
+            background: radial-gradient(ellipse at center, rgba(255, 182, 193, 0.4) 0%, transparent 70%);
+            animation-delay: 0s;
+        }
+
+        .splash2 {
+            width: 80px;
+            height: 120px;
+            bottom: 20%;
+            left: 10%;
+            background: radial-gradient(ellipse at center, rgba(173, 216, 230, 0.3) 0%, transparent 70%);
+            animation-delay: 7s;
+        }
+
+        .splash3 {
+            width: 100px;
+            height: 140px;
+            top: 60%;
+            right: 5%;
+            background: radial-gradient(ellipse at center, rgba(221, 160, 221, 0.25) 0%, transparent 70%);
+            animation-delay: 14s;
+        }
+
+        @keyframes float-gentle {
+            0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); opacity: 0.7; }
+            33% { transform: translateY(-15px) rotate(2deg) scale(1.05); opacity: 0.9; }
+            66% { transform: translateY(-5px) rotate(-1deg) scale(0.95); opacity: 0.8; }
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            padding: 25mm;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dreamy-header {
+            text-align: center;
+            margin-bottom: 20mm;
+            position: relative;
+        }
+
+        .name {
+            font-family: 'Dancing Script', cursive;
+            font-size: 42pt;
+            font-weight: 700;
+            color: #e91e63;
+            margin-bottom: 5mm;
+            text-shadow: 2px 2px 4px rgba(233, 30, 99, 0.1);
+            letter-spacing: 1px;
+            position: relative;
+        }
+
+        .name::after {
+            content: '✨';
+            position: absolute;
+            right: -15mm;
+            top: 10%;
+            font-size: 18pt;
+            color: #ff6b9d;
+            animation: sparkle 3s ease-in-out infinite;
+        }
+
+        @keyframes sparkle {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        .tagline {
+            font-size: 14pt;
+            color: #8e44ad;
+            font-weight: 400;
+            letter-spacing: 2px;
+            font-style: italic;
+        }
+
+        .content-flow {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15mm;
+        }
+
+        .dreamy-card {
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 25px;
+            padding: 15mm;
+            box-shadow: 0 10px 40px rgba(233, 30, 99, 0.1);
+            position: relative;
+            border: 2px solid rgba(255, 182, 193, 0.3);
+            backdrop-filter: blur(5px);
+        }
+
+        .dreamy-card::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 30px;
+            height: 30px;
+            background: radial-gradient(circle, rgba(255, 182, 193, 0.6) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(1px);
+        }
+
+        .card-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 22pt;
+            font-weight: 600;
+            color: #e91e63;
+            margin-bottom: 8mm;
+            text-align: center;
+            position: relative;
+        }
+
+        .card-title::after {
+            content: '';
+            position: absolute;
+            bottom: -3mm;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30mm;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(233, 30, 99, 0.5), transparent);
+            border-radius: 1px;
+        }
+
+        .info-item {
+            margin-bottom: 6mm;
+            display: flex;
+            flex-direction: column;
+            gap: 2mm;
+            position: relative;
+            padding-left: 8mm;
+        }
+
+        .info-item::before {
+            content: '🌸';
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 10pt;
+        }
+
+        .info-label {
+            font-size: 11pt;
+            font-weight: 600;
+            color: #8e44ad;
+            text-transform: capitalize;
+            font-style: italic;
+        }
+
+        .info-value {
+            font-size: 12pt;
+            color: #4a5568;
+            font-weight: 400;
+            line-height: 1.4;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        .artistic-section {
+            background: linear-gradient(135deg, rgba(255, 182, 193, 0.2) 0%, rgba(173, 216, 230, 0.2) 100%);
+            border: 2px solid rgba(233, 30, 99, 0.2);
+            margin-top: 10mm;
+            text-align: center;
+            position: relative;
+        }
+
+        .artistic-section::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 20px;
+            background: radial-gradient(ellipse at center, rgba(255, 182, 193, 0.8) 0%, transparent 70%);
+            border-radius: 50%;
+            filter: blur(2px);
+        }
+
+        .brush-stroke {
+            position: absolute;
+            bottom: 15mm;
+            right: 15mm;
+            width: 80px;
+            height: 15px;
+            background: linear-gradient(90deg, rgba(233, 30, 99, 0.3), rgba(173, 216, 230, 0.3), rgba(221, 160, 221, 0.3));
+            border-radius: 50px;
+            filter: blur(1px);
+            transform: rotate(-15deg);
+        }
+
+        @media print {
+            body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="watercolor-bg"></div>
+        <div class="watercolor-splash splash1"></div>
+        <div class="watercolor-splash splash2"></div>
+        <div class="watercolor-splash splash3"></div>
+        <div class="brush-stroke"></div>
+        
+        <div class="container">
+            <div class="dreamy-header">
+                <div class="name">[Your Name]</div>
+                <div class="tagline">Artistic Expression</div>
+            </div>
+            
+            <div class="content-flow">
+                <div class="dreamy-card">
+                    <div class="card-title">Personal Canvas</div>
+                    <div class="info-item">
+                        <div class="info-label">Full Name</div>
+                        <div class="info-value">[Complete Name]</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Date of Birth</div>
+                        <div class="info-value">[Birth Date]</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Education</div>
+                        <div class="info-value">[Educational Background]</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Contact</div>
+                        <div class="info-value">[Phone Number]</div>
+                    </div>
+                </div>
+
+                <div class="dreamy-card">
+                    <div class="card-title">Family Palette</div>
+                    <div class="info-item">
+                        <div class="info-label">Father's Name</div>
+                        <div class="info-value">[Father's Name]</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Mother's Name</div>
+                        <div class="info-value">[Mother's Name]</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Address</div>
+                        <div class="info-value">[Complete Address]</div>
+                    </div>
+                </div>
+
+                <div class="dreamy-card artistic-section full-width">
+                    <div class="card-title">Creative Notes</div>
+                    <div style="color: #8e44ad; font-size: 11pt; line-height: 1.6; font-style: italic; padding: 0 10mm;">
+                        "Life is a canvas, and every moment is a brushstroke creating the masterpiece of our existence. This watercolor-inspired biodata captures the flowing beauty of personal expression."
+                    </div>
+                    <div style="margin-top: 5mm; color: #e91e63; font-size: 14pt;">
+                        ✨ 🌸 ✨
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
