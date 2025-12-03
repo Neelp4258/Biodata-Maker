@@ -1,0 +1,12 @@
+# Redirects for Biodata Maker SPA
+
+# Clean URLs - redirect routes without .html extension
+/templates    /templates.html    200
+/form-fill    /form-fill.html    200
+/form         /form-fill.html    200
+
+# Template files - keep them accessible
+/template-*   /template-:splat   200
+
+# Fallback to index.html for any other routes (SPA routing)
+/*            /index.html        200
