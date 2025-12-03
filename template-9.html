@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biodata Template 9 - Classic Renaissance</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Cinzel:wght@400;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        body {
+            font-family: 'Libre Baskerville', serif;
+            color: #3e2723;
+            background: #fff8e1;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .page {
+            width: 210mm;
+            height: 296.8mm;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            background: linear-gradient(135deg, #fef5e7 0%, #fff9e6 50%, #fef5e7 100%);
+            border: 15px solid #8b6f47;
+        }
+
+        /* Vintage ornamental border */
+        .ornamental-border {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            bottom: 15px;
+            border: 2px solid #c19a6b;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .ornamental-border::before,
+        .ornamental-border::after {
+            content: '❦';
+            position: absolute;
+            font-size: 24pt;
+            color: #8b6f47;
+        }
+
+        .ornamental-border::before {
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .ornamental-border::after {
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%) rotate(180deg);
+        }
+
+        .corner-ornament {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 2px solid #c19a6b;
+        }
+
+        .corner-ornament.top-left {
+            top: -2px;
+            left: -2px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .corner-ornament.top-right {
+            top: -2px;
+            right: -2px;
+            border-left: none;
+            border-bottom: none;
+        }
+
+        .corner-ornament.bottom-left {
+            bottom: -2px;
+            left: -2px;
+            border-right: none;
+            border-top: none;
+        }
+
+        .corner-ornament.bottom-right {
+            bottom: -2px;
+            right: -2px;
+            border-left: none;
+            border-top: none;
+        }
+
+        .container {
+            padding: 25mm 25mm;
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .vintage-header {
+            text-align: center;
+            margin-bottom: 15mm;
+            padding-bottom: 8mm;
+            border-bottom: 3px double #8b6f47;
+            position: relative;
+        }
+
+        .flourish {
+            font-size: 18pt;
+            color: #c19a6b;
+            margin-bottom: 5mm;
+        }
+
+        .name {
+            font-family: 'Cinzel', serif;
+            font-size: 38pt;
+            font-weight: 700;
+            color: #5d4037;
+            margin-bottom: 5mm;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 0px rgba(193, 154, 107, 0.2);
+        }
+
+        .subtitle {
+            font-family: 'Cinzel', serif;
+            font-size: 12pt;
+            color: #8b6f47;
+            font-weight: 400;
+            letter-spacing: 3px;
+            font-style: italic;
+        }
+
+        .content-area {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12mm;
+        }
+
+        .vintage-section {
+            background: rgba(255, 248, 220, 0.5);
+            border: 2px solid #c19a6b;
+            border-radius: 8px;
+            padding: 10mm;
+            position: relative;
+            box-shadow: inset 0 0 20px rgba(139, 111, 71, 0.1);
+        }
+
+        .vintage-section::before {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            right: 5px;
+            bottom: 5px;
+            border: 1px solid rgba(193, 154, 107, 0.3);
+            border-radius: 6px;
+            pointer-events: none;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 8mm;
+            position: relative;
+            z-index: 2;
+        }
+
+        .section-ornament {
+            font-size: 14pt;
+            color: #c19a6b;
+            margin-bottom: 3mm;
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 16pt;
+            font-weight: 600;
+            color: #5d4037;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .divider {
+            width: 60%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #c19a6b, transparent);
+            margin: 3mm auto;
+        }
+
+        .entry {
+            margin-bottom: 5mm;
+            position: relative;
+            z-index: 2;
+        }
+
+        .entry-label {
+            font-size: 9pt;
+            font-weight: 700;
+            color: #8b6f47;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1mm;
+            display: block;
+        }
+
+        .entry-value {
+            font-size: 10pt;
+            color: #3e2723;
+            line-height: 1.5;
+            font-style: italic;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        .footer-flourish {
+            text-align: center;
+            margin-top: auto;
+            padding-top: 8mm;
+            border-top: 3px double #8b6f47;
+            color: #c19a6b;
+            font-size: 14pt;
+        }
+
+        /* Watermark pattern */
+        .watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 120pt;
+            color: rgba(193, 154, 107, 0.03);
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @media print {
+            body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .page { page-break-after: always; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="watermark">Bio</div>
+        <div class="ornamental-border">
+            <div class="corner-ornament top-left"></div>
+            <div class="corner-ornament top-right"></div>
+            <div class="corner-ornament bottom-left"></div>
+            <div class="corner-ornament bottom-right"></div>
+        </div>
+
+        <div class="container">
+            <div class="vintage-header">
+                <div class="flourish">❦ ❦ ❦</div>
+                <div class="name">[Your Name]</div>
+                <div class="subtitle">~ Curriculum Vitae ~</div>
+            </div>
+
+            <div class="content-area">
+                <div class="vintage-section">
+                    <div class="section-header">
+                        <div class="section-ornament">✦</div>
+                        <div class="section-title">Personal</div>
+                        <div class="divider"></div>
+                    </div>
+                    <div class="entry">
+                        <span class="entry-label">Full Name</span>
+                        <span class="entry-value">[Complete Name]</span>
+                    </div>
+                    <div class="entry">
+                        <span class="entry-label">Date of Birth</span>
+                        <span class="entry-value">[Birth Date]</span>
+                    </div>
+                    <div class="entry">
+                        <span class="entry-label">Age</span>
+                        <span class="entry-value">[Age] years</span>
+                    </div>
+                    <div class="entry">
+                        <span class="entry-label">Contact</span>
+                        <span class="entry-value">[Phone Number]</span>
+                    </div>
+                    <div class="entry">
+                        <span class="entry-label">Email</span>
+                        <span class="entry-value">[Email Address]</span>
+                    </div>
+                </div>
+
+                <div class="vintage-section">
+                    <div class="section-header">
+                        <div class="section-ornament">✦</div>
+                        <div class="section-title">Education</div>
+                        <div class="divider"></div>
+                    </div>
+                    <div class="entry">
+                        <span class="entry-label">Qualification</span>
+                        <span class="entry-value">[Educational Background]</span>
+                    </div>
+                    <div class="entry">
+                        <span class="entry-label">Institution</span>
+                        <span class="entry-value">[University/College]</span>
+                    </div>
+                    <div class="entry">
+                        <span class="entry-label">Achievements</span>
+                        <span class="entry-value">[Academic Honors]</span>
+                    </div>
+                </div>
+
+                <div class="vintage-section">
+                    <div class="section-header">
+                        <div class="section-ornament">✦</div>
+                        <div class="section-title">Professional</div>
+                        <div class="divider"></div>
+                    </div>
+                    <div class="entry">
+                        <span class="entry-label">Occupation</span>
+                        <span class="entry-value">[Current Position]</span>
+                    </div>
+                    <div class="entry">
+                        <span class="entry-label">Experience</span>
+                        <span class="entry-value">[Work History]</span>
+                    </div>
+                    <div class="entry">
+                        <span class="entry-label">Expertise</span>
+                        <span class="entry-value">[Professional Skills]</span>
+                    </div>
+                </div>
+
+                <div class="vintage-section">
+                    <div class="section-header">
+                        <div class="section-ornament">✦</div>
+                        <div class="section-title">Family</div>
+                        <div class="divider"></div>
+                    </div>
+                    <div class="entry">
+                        <span class="entry-label">Father's Name</span>
+                        <span class="entry-value">[Father's Name]</span>
+                    </div>
+                    <div class="entry">
+                        <span class="entry-label">Mother's Name</span>
+                        <span class="entry-value">[Mother's Name]</span>
+                    </div>
+                    <div class="entry">
+                        <span class="entry-label">Address</span>
+                        <span class="entry-value">[Complete Address]</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-flourish">
+                ❦ ❦ ❦
+            </div>
+        </div>
+    </div>
+</body>
+</html>

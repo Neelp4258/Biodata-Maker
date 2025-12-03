@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biodata Template 10 - Tech Futuristic</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            color: #0f172a;
+            background: #000000;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .page {
+            width: 210mm;
+            height: 296.8mm;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+        }
+
+        /* Cyber grid background */
+        .cyber-grid {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                linear-gradient(rgba(6, 182, 212, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(6, 182, 212, 0.1) 1px, transparent 1px);
+            background-size: 20mm 20mm;
+            pointer-events: none;
+        }
+
+        .cyber-lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                linear-gradient(90deg, transparent 0%, rgba(6, 182, 212, 0.2) 50%, transparent 100%),
+                linear-gradient(180deg, transparent 0%, rgba(139, 92, 246, 0.2) 50%, transparent 100%);
+            pointer-events: none;
+            animation: pulse 8s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+
+        .header {
+            padding: 15mm 20mm;
+            border-bottom: 2px solid #06b6d4;
+            box-shadow: 0 0 20px rgba(6, 182, 212, 0.3);
+            position: relative;
+            z-index: 2;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 30%;
+            height: 2px;
+            background: linear-gradient(90deg, #06b6d4, #8b5cf6);
+            animation: scan 3s linear infinite;
+        }
+
+        @keyframes scan {
+            0% { left: 0; width: 30%; }
+            50% { left: 70%; width: 30%; }
+            100% { left: 0; width: 30%; }
+        }
+
+        .name-container {
+            display: flex;
+            align-items: center;
+            gap: 8mm;
+            margin-bottom: 5mm;
+        }
+
+        .avatar-hex {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #06b6d4 0%, #8b5cf6 100%);
+            clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24pt;
+            font-weight: 700;
+            box-shadow: 0 0 30px rgba(6, 182, 212, 0.6);
+        }
+
+        .name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 38pt;
+            font-weight: 900;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 0 0 10px rgba(6, 182, 212, 0.8);
+        }
+
+        .id-tag {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 11pt;
+            color: #06b6d4;
+            font-weight: 500;
+            letter-spacing: 2px;
+        }
+
+        .id-tag::before {
+            content: '[ ';
+            color: #8b5cf6;
+        }
+
+        .id-tag::after {
+            content: ' ]';
+            color: #8b5cf6;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 15mm 20mm;
+            position: relative;
+            z-index: 2;
+        }
+
+        .data-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10mm;
+        }
+
+        .tech-panel {
+            background: rgba(6, 182, 212, 0.05);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            border-radius: 4px;
+            padding: 10mm;
+            position: relative;
+            backdrop-filter: blur(5px);
+        }
+
+        .tech-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, #06b6d4, #8b5cf6);
+        }
+
+        .tech-panel::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            background:
+                linear-gradient(90deg, rgba(6, 182, 212, 0.1) 1px, transparent 1px),
+                linear-gradient(rgba(6, 182, 212, 0.1) 1px, transparent 1px);
+            background-size: 10mm 10mm;
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .panel-header {
+            display: flex;
+            align-items: center;
+            gap: 5mm;
+            margin-bottom: 8mm;
+            position: relative;
+            z-index: 2;
+        }
+
+        .tech-icon {
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, #06b6d4 0%, #8b5cf6 100%);
+            clip-path: polygon(0% 0%, 100% 0%, 100% 70%, 70% 100%, 0% 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14pt;
+            font-weight: 700;
+        }
+
+        .panel-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 16pt;
+            font-weight: 700;
+            color: #06b6d4;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .data-row {
+            margin-bottom: 5mm;
+            position: relative;
+            z-index: 2;
+            padding-left: 8mm;
+        }
+
+        .data-row::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: #8b5cf6;
+            font-size: 10pt;
+        }
+
+        .data-label {
+            font-size: 9pt;
+            font-weight: 700;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1mm;
+            display: block;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .data-value {
+            font-size: 11pt;
+            color: #cbd5e1;
+            font-weight: 400;
+            line-height: 1.4;
+        }
+
+        .full-width {
+            grid-column: 1 / -1;
+        }
+
+        .status-bar {
+            position: relative;
+            margin-top: auto;
+            padding: 8mm 20mm;
+            background: rgba(6, 182, 212, 0.1);
+            border-top: 1px solid rgba(6, 182, 212, 0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 2;
+        }
+
+        .status-item {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 9pt;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .status-value {
+            color: #06b6d4;
+            margin-left: 5mm;
+        }
+
+        /* Glowing corners */
+        .corner-glow {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 2px solid #06b6d4;
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.5);
+            pointer-events: none;
+        }
+
+        .corner-glow.top-left {
+            top: 15mm;
+            left: 15mm;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .corner-glow.top-right {
+            top: 15mm;
+            right: 15mm;
+            border-left: none;
+            border-bottom: none;
+        }
+
+        .corner-glow.bottom-left {
+            bottom: 15mm;
+            left: 15mm;
+            border-right: none;
+            border-top: none;
+        }
+
+        .corner-glow.bottom-right {
+            bottom: 15mm;
+            right: 15mm;
+            border-left: none;
+            border-top: none;
+        }
+
+        @media print {
+            body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .page { page-break-after: always; }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="cyber-grid"></div>
+        <div class="cyber-lines"></div>
+        <div class="corner-glow top-left"></div>
+        <div class="corner-glow top-right"></div>
+        <div class="corner-glow bottom-left"></div>
+        <div class="corner-glow bottom-right"></div>
+
+        <div class="header">
+            <div class="name-container">
+                <div class="avatar-hex">ID</div>
+                <div>
+                    <div class="name">[YOUR NAME]</div>
+                    <div class="id-tag">PROFESSIONAL PROFILE</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="data-grid">
+                <div class="tech-panel">
+                    <div class="panel-header">
+                        <div class="tech-icon">█</div>
+                        <div class="panel-title">IDENTITY</div>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label">Full Name</span>
+                        <span class="data-value">[Complete Name]</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label">Birth Date</span>
+                        <span class="data-value">[Date of Birth]</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label">Age</span>
+                        <span class="data-value">[Age] years</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label">Contact</span>
+                        <span class="data-value">[Phone Number]</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label">Email</span>
+                        <span class="data-value">[Email Address]</span>
+                    </div>
+                </div>
+
+                <div class="tech-panel">
+                    <div class="panel-header">
+                        <div class="tech-icon">█</div>
+                        <div class="panel-title">EDUCATION</div>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label">Qualification</span>
+                        <span class="data-value">[Educational Background]</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label">Institution</span>
+                        <span class="data-value">[University/College]</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label">Specialization</span>
+                        <span class="data-value">[Field of Study]</span>
+                    </div>
+                </div>
+
+                <div class="tech-panel">
+                    <div class="panel-header">
+                        <div class="tech-icon">█</div>
+                        <div class="panel-title">PROFESSIONAL</div>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label">Position</span>
+                        <span class="data-value">[Current Job Title]</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label">Experience</span>
+                        <span class="data-value">[Work Experience]</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label">Skills</span>
+                        <span class="data-value">[Professional Competencies]</span>
+                    </div>
+                </div>
+
+                <div class="tech-panel">
+                    <div class="panel-header">
+                        <div class="tech-icon">█</div>
+                        <div class="panel-title">FAMILY</div>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label">Father</span>
+                        <span class="data-value">[Father's Name]</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label">Mother</span>
+                        <span class="data-value">[Mother's Name]</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label">Address</span>
+                        <span class="data-value">[Complete Address]</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="status-bar">
+            <div class="status-item">STATUS: <span class="status-value">ACTIVE</span></div>
+            <div class="status-item">FORMAT: <span class="status-value">A4 DIGITAL</span></div>
+            <div class="status-item">VERSION: <span class="status-value">1.0</span></div>
+        </div>
+    </div>
+</body>
+</html>
