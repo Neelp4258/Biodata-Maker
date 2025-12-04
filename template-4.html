@@ -167,9 +167,13 @@
         }
 
         .info-item {
-            margin-bottom:  3mm;
+            margin-bottom: 3mm;
             position: relative;
             padding-left: 15mm;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 5mm;
+            align-items: baseline;
         }
 
         .info-item::before {
@@ -187,8 +191,6 @@
             color: #ffd700;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 2mm;
-            display: block;
         }
 
         .info-value {
