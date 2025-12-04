@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classic Traditional Serif - Premium Biodata Template</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&family=Lato:wght@300;400;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background: white;
+            width: 210mm;
+            height: 297mm;
+            margin: 0 auto;
+            padding: 0;
+            color: #2c1810;
+            position: relative;
+        }
+
+        .container {
+            width: 100%;
+            height: 100%;
+            padding: 45mm 20mm 20mm 20mm;
+            position: relative;
+            background: linear-gradient(to bottom, #fdfbf7 0%, #ffffff 100%);
+        }
+
+        .decorative-border {
+            position: absolute;
+            top: 15mm;
+            left: 15mm;
+            right: 15mm;
+            bottom: 15mm;
+            border: 3px double #8b6f47;
+            pointer-events: none;
+        }
+
+        .decorative-border::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            right: -8px;
+            bottom: -8px;
+            border: 1px solid #c9a87c;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 35px;
+            padding: 25px 40px;
+            background: linear-gradient(to right, #fef5e7 0%, #fff9f0 50%, #fef5e7 100%);
+            border: 2px solid #c9a87c;
+            border-radius: 3px;
+            position: relative;
+        }
+
+        .header::before, .header::after {
+            content: '❖';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #8b6f47;
+            font-size: 20px;
+        }
+
+        .header::before {
+            left: 20px;
+        }
+
+        .header::after {
+            right: 20px;
+        }
+
+        .name {
+            font-family: 'Crimson Text', serif;
+            font-size: 38px;
+            font-weight: 700;
+            color: #2c1810;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .title {
+            font-size: 14px;
+            font-weight: 400;
+            color: #5d4e37;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .ornament {
+            text-align: center;
+            color: #c9a87c;
+            font-size: 18px;
+            margin: 20px 0;
+        }
+
+        .section {
+            margin-bottom: 28px;
+        }
+
+        .section-title {
+            font-family: 'Crimson Text', serif;
+            font-size: 19px;
+            font-weight: 700;
+            color: #2c1810;
+            text-align: center;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #c9a87c;
+            position: relative;
+        }
+
+        .section-title::before {
+            content: '●';
+            position: absolute;
+            left: 50%;
+            bottom: -7px;
+            transform: translateX(-50%);
+            background: white;
+            padding: 0 10px;
+            color: #c9a87c;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+            margin-bottom: 20px;
+        }
+
+        .info-item {
+            background: #fefdfb;
+            padding: 14px 18px;
+            border: 1px solid #e8dcc8;
+            border-radius: 2px;
+        }
+
+        .info-label {
+            font-size: 11px;
+            font-weight: 700;
+            color: #8b6f47;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+
+        .info-value {
+            font-size: 13px;
+            font-weight: 400;
+            color: #2c1810;
+            line-height: 1.7;
+        }
+
+        .content-box {
+            background: #fefdfb;
+            padding: 20px 24px;
+            border: 1px solid #e8dcc8;
+            border-left: 4px solid #8b6f47;
+            margin-bottom: 18px;
+        }
+
+        .content-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed #c9a87c;
+        }
+
+        .content-title {
+            font-family: 'Crimson Text', serif;
+            font-size: 17px;
+            font-weight: 700;
+            color: #2c1810;
+        }
+
+        .content-date {
+            font-size: 12px;
+            font-weight: 700;
+            color: #8b6f47;
+            font-style: italic;
+        }
+
+        .content-subtitle {
+            font-size: 14px;
+            font-weight: 700;
+            color: #5d4e37;
+            margin-bottom: 10px;
+        }
+
+        .content-description {
+            font-size: 13px;
+            color: #3d3026;
+            line-height: 1.8;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-item {
+            background: linear-gradient(to bottom, #8b6f47 0%, #6b5537 100%);
+            color: #fff;
+            padding: 10px 18px;
+            border-radius: 2px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            box-shadow: 0 2px 4px rgba(139, 111, 71, 0.3);
+        }
+
+        .contact-strip {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            padding: 18px;
+            background: #fef5e7;
+            border: 1px solid #c9a87c;
+            border-radius: 2px;
+            margin-bottom: 25px;
+        }
+
+        .contact-item {
+            font-size: 12px;
+            color: #2c1810;
+            font-weight: 500;
+        }
+
+        .contact-label {
+            font-weight: 700;
+            color: #8b6f47;
+            margin-right: 5px;
+        }
+
+        @media print {
+            body {
+                width: 210mm;
+                height: 297mm;
+                margin: 0;
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="decorative-border"></div>
+
+        <div class="header">
+            <div class="name">[Your Name]</div>
+            <div class="title">[Job Title]</div>
+        </div>
+
+        <div class="contact-strip">
+            <div class="contact-item">
+                <span class="contact-label">Email:</span>[Email Address]
+            </div>
+            <div class="contact-item">
+                <span class="contact-label">Phone:</span>[Phone Number]
+            </div>
+            <div class="contact-item">
+                <span class="contact-label">Location:</span>[City, State], [Country]
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Personal Information</div>
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="info-label">Date of Birth</div>
+                    <div class="info-value">[Date of Birth]</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Age</div>
+                    <div class="info-value">[Age] years</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Father's Name</div>
+                    <div class="info-value">[Father's Name]</div>
+                </div>
+                <div class="info-item">
+                    <div class="info-label">Mother's Name</div>
+                    <div class="info-value">[Mother's Name]</div>
+                </div>
+            </div>
+            <div class="info-item">
+                <div class="info-label">Residential Address</div>
+                <div class="info-value">[Address]</div>
+            </div>
+        </div>
+
+        <div class="ornament">❖ ❖ ❖</div>
+
+        <div class="section">
+            <div class="section-title">Educational Qualifications</div>
+            <div class="content-box">
+                <div class="content-header">
+                    <div class="content-title">[Educational Background]</div>
+                    <div class="content-date">[Year]</div>
+                </div>
+                <div class="content-subtitle">[University]</div>
+                <div class="content-description">[Field of Study]</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Professional Experience</div>
+            <div class="content-box">
+                <div class="content-header">
+                    <div class="content-title">[Job Title]</div>
+                    <div class="content-date">[Duration]</div>
+                </div>
+                <div class="content-subtitle">[Company]</div>
+                <div class="content-description">[Work Experience & Achievements]</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Professional Skills</div>
+            <div class="skills-list">
+                <div class="skill-item">[Skills]</div>
+            </div>
+        </div>
+
+        <div class="ornament">❖ ❖ ❖</div>
+
+        <div class="section">
+            <div class="section-title">Hobbies & Interests</div>
+            <div class="content-box">
+                <div class="content-description">[Hobbies]</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Additional Remarks</div>
+            <div class="content-box">
+                <div class="content-description">[Additional Information]</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

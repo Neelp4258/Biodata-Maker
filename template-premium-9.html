@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Corporate Blue - Premium Resume Template</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: white;
+            width: 210mm;
+            height: 297mm;
+            margin: 0 auto;
+            padding: 0;
+            color: #1e293b;
+            position: relative;
+        }
+
+        .container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            padding: 40px 50px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 400px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+
+        .name {
+            font-size: 42px;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin-bottom: 8px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .title {
+            font-size: 18px;
+            font-weight: 400;
+            opacity: 0.95;
+            letter-spacing: 0.5px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-bar {
+            background: #f8fafc;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 3px solid #1e40af;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: #475569;
+            font-weight: 500;
+        }
+
+        .contact-icon {
+            color: #1e40af;
+            font-weight: 600;
+        }
+
+        .main-content {
+            display: flex;
+            flex: 1;
+        }
+
+        .left-column {
+            width: 35%;
+            background: #f8fafc;
+            padding: 30px;
+            border-right: 3px solid #e2e8f0;
+        }
+
+        .right-column {
+            width: 65%;
+            padding: 30px 40px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1e40af;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #1e40af;
+        }
+
+        .info-item {
+            margin-bottom: 15px;
+        }
+
+        .info-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .info-value {
+            font-size: 13px;
+            font-weight: 500;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        .skills-grid {
+            display: grid;
+            gap: 10px;
+        }
+
+        .skill-item {
+            background: white;
+            padding: 10px 15px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 500;
+            color: #1e293b;
+            border-left: 3px solid #1e40af;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .experience-item, .education-item {
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .experience-item:last-child, .education-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .experience-title, .education-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 5px;
+        }
+
+        .experience-company, .education-institution {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1e40af;
+            margin-bottom: 4px;
+        }
+
+        .experience-duration, .education-duration {
+            font-size: 12px;
+            color: #64748b;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .experience-description, .education-description {
+            font-size: 13px;
+            color: #475569;
+            line-height: 1.7;
+        }
+
+        @media print {
+            body {
+                width: 210mm;
+                height: 297mm;
+                margin: 0;
+                padding: 0;
+            }
+
+            .container {
+                page-break-after: avoid;
+                page-break-before: avoid;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="name">[Your Name]</div>
+            <div class="title">[Job Title]</div>
+        </div>
+
+        <div class="contact-bar">
+            <div class="contact-item">
+                <span class="contact-icon">📧</span>
+                <span>[Email Address]</span>
+            </div>
+            <div class="contact-item">
+                <span class="contact-icon">📱</span>
+                <span>[Phone Number]</span>
+            </div>
+            <div class="contact-item">
+                <span class="contact-icon">📍</span>
+                <span>[City, State]</span>
+            </div>
+            <div class="contact-item">
+                <span class="contact-icon">🌍</span>
+                <span>[Country]</span>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="left-column">
+                <div class="section">
+                    <div class="section-title">Profile</div>
+                    <div class="info-item">
+                        <div class="info-label">Date of Birth</div>
+                        <div class="info-value">[Date of Birth]</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Age</div>
+                        <div class="info-value">[Age] years</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Skills</div>
+                    <div class="skills-grid">
+                        <div class="skill-item">[Skills]</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Personal</div>
+                    <div class="info-item">
+                        <div class="info-label">Father's Name</div>
+                        <div class="info-value">[Father's Name]</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Mother's Name</div>
+                        <div class="info-value">[Mother's Name]</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Address</div>
+                        <div class="info-value">[Address]</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Hobbies</div>
+                    <div class="info-value">[Hobbies]</div>
+                </div>
+            </div>
+
+            <div class="right-column">
+                <div class="section">
+                    <div class="section-title">Education</div>
+                    <div class="education-item">
+                        <div class="education-title">[Educational Background]</div>
+                        <div class="education-institution">[University]</div>
+                        <div class="education-duration">[Year]</div>
+                        <div class="education-description">[Field of Study]</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Work Experience</div>
+                    <div class="experience-item">
+                        <div class="experience-title">[Job Title]</div>
+                        <div class="experience-company">[Company]</div>
+                        <div class="experience-duration">[Duration]</div>
+                        <div class="experience-description">[Work Experience & Achievements]</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Additional Information</div>
+                    <div class="info-value">[Additional Information]</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
