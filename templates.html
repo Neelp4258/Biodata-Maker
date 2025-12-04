@@ -14,7 +14,7 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
         * {
@@ -24,144 +24,172 @@
         }
 
         :root {
-            --primary-color: #2563eb;
-            --secondary-color: #1e40af;
-            --accent-color: #f59e0b;
-            --dark-color: #1e293b;
-            --light-color: #f8fafc;
-            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --primary-color: #0f172a;
+            --secondary-color: #1e293b;
+            --accent-color: #0ea5e9;
+            --border-color: #e2e8f0;
+            --text-primary: #0f172a;
+            --text-secondary: #64748b;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f1f5f9;
             min-height: 100vh;
-            padding-top: 80px;
+            padding-top: 70px;
+            font-size: 14px;
+            color: var(--text-primary);
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Navigation */
+        /* Navigation - Corporate Style */
         .navbar {
-            padding: 1rem 0;
-            background: rgba(255, 255, 255, 0.95) !important;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            padding: 0;
+            background: #ffffff !important;
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            height: 70px;
         }
 
-        .navbar-brand {
-            font-family: 'Playfair Display', serif;
-            font-weight: 800;
-            font-size: 1.8rem;
-            color: var(--dark-color);
+        .navbar .container {
+            height: 100%;
             display: flex;
             align-items: center;
         }
 
+        .navbar-brand {
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            letter-spacing: -0.3px;
+        }
+
         .navbar-brand img {
-            vertical-align: middle;
+            height: 28px;
+            margin-right: 10px;
         }
 
         .user-info {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 12px;
+            font-size: 13px;
         }
 
         .user-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--gradient-primary);
+            width: 32px;
+            height: 32px;
+            border-radius: 4px;
+            background: var(--primary-color);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
             font-weight: 600;
+            font-size: 12px;
+        }
+
+        #userName {
+            color: var(--text-secondary);
+            font-weight: 500;
         }
 
         .btn-logout {
-            padding: 0.5rem 1.5rem;
-            border-radius: 50px;
-            background: #ef4444;
-            color: white;
-            border: none;
+            padding: 7px 16px;
+            border-radius: 4px;
+            background: #ffffff;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-color);
             font-weight: 500;
-            transition: all 0.3s ease;
+            font-size: 13px;
+            transition: all 0.15s ease;
         }
 
         .btn-logout:hover {
-            background: #dc2626;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+            background: #f8fafc;
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+            transform: none;
+            box-shadow: none;
         }
 
-        /* Page Header */
+        /* Page Header - Corporate */
         .page-header {
-            padding: 3rem 0;
-            text-align: center;
-            background: white;
-            margin-bottom: 3rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            padding: 24px 0;
+            background: #ffffff;
+            margin-bottom: 24px;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .page-header h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--dark-color);
-            margin-bottom: 0.5rem;
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 4px;
+            letter-spacing: -0.3px;
         }
 
         .page-header p {
-            font-size: 1.1rem;
-            color: #64748b;
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin: 0;
+            font-weight: 400;
         }
 
-        /* Template Cards */
+        /* Template Cards - Corporate */
         .templates-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-bottom: 4rem;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 16px;
+            margin-bottom: 32px;
         }
 
         .template-card {
-            background: white;
-            border-radius: 20px;
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
+            transition: all 0.15s ease;
             cursor: pointer;
             position: relative;
         }
 
         .template-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(102, 126, 234, 0.2);
+            border-color: var(--accent-color);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transform: none;
         }
 
         .template-preview {
             width: 100%;
-            height: 400px;
-            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+            height: 320px;
+            background: #f8fafc;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
             overflow: hidden;
+            border-bottom: 1px solid var(--border-color);
         }
 
         .template-preview-mini {
-            width: 210px;
-            height: 297px;
+            width: 180px;
+            height: 254px;
             background: white;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-            border-radius: 8px;
-            transform: scale(0.8);
-            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+            border-radius: 2px;
+            transform: scale(0.85);
+            transition: all 0.15s ease;
         }
 
         .template-card:hover .template-preview-mini {
-            transform: scale(0.85);
+            transform: scale(0.88);
         }
 
         /* Template Preview Styles */
@@ -470,67 +498,74 @@
 
         .template-badge {
             position: absolute;
-            top: 15px;
-            right: 15px;
-            background: var(--gradient-primary);
+            top: 12px;
+            right: 12px;
+            background: #0f172a;
             color: white;
-            padding: 0.4rem 1rem;
-            border-radius: 50px;
-            font-size: 0.8rem;
+            padding: 4px 10px;
+            border-radius: 3px;
+            font-size: 11px;
             font-weight: 600;
             z-index: 10;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .template-info {
-            padding: 1.5rem;
+            padding: 16px;
         }
 
         .template-name {
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--dark-color);
-            margin-bottom: 0.5rem;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+            letter-spacing: -0.2px;
         }
 
         .template-description {
-            color: #64748b;
-            font-size: 0.95rem;
-            margin-bottom: 1rem;
-            line-height: 1.6;
+            color: var(--text-secondary);
+            font-size: 12px;
+            margin-bottom: 12px;
+            line-height: 1.5;
         }
 
         .template-features {
             display: flex;
             flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
+            gap: 6px;
+            margin-bottom: 12px;
         }
 
         .feature-tag {
             background: #f1f5f9;
-            color: #475569;
-            padding: 0.3rem 0.8rem;
-            border-radius: 50px;
-            font-size: 0.8rem;
+            color: var(--text-secondary);
+            padding: 4px 10px;
+            border-radius: 3px;
+            font-size: 11px;
             font-weight: 500;
+            border: 1px solid var(--border-color);
         }
 
         .btn-select-template {
             width: 100%;
-            padding: 0.9rem;
-            background: var(--gradient-primary);
+            padding: 10px;
+            background: var(--accent-color);
             color: white;
             border: none;
-            border-radius: 12px;
+            border-radius: 4px;
             font-weight: 600;
-            font-size: 1rem;
+            font-size: 13px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.15s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
         }
 
         .btn-select-template:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+            background: #0284c7;
+            transform: none;
+            box-shadow: none;
         }
 
         /* Modal for Preview */
@@ -582,28 +617,67 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            body {
+                padding-top: 60px;
+            }
+
+            .navbar {
+                height: 60px;
+            }
+
             .templates-grid {
                 grid-template-columns: 1fr;
-                gap: 1.5rem;
+                gap: 12px;
+            }
+
+            .page-header {
+                padding: 16px 0;
             }
 
             .page-header h1 {
-                font-size: 2rem;
+                font-size: 18px;
+            }
+
+            .page-header p {
+                font-size: 12px;
             }
 
             .template-preview {
-                height: 300px;
+                height: 280px;
+            }
+
+            .user-info {
+                gap: 8px;
+            }
+
+            #userName {
+                display: none;
             }
         }
 
-        /* Loading Animation */
+        @media (max-width: 576px) {
+            .navbar-brand {
+                font-size: 14px;
+            }
+
+            .navbar-brand img {
+                height: 24px;
+            }
+
+            .btn-logout {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+        }
+
+        /* Loading Animation - Corporate */
         .loading-screen {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.98);
             display: none;
             align-items: center;
             justify-content: center;
@@ -615,12 +689,12 @@
         }
 
         .spinner-large {
-            border: 4px solid #f3f4f6;
-            border-top: 4px solid #667eea;
+            border: 3px solid #e2e8f0;
+            border-top: 3px solid var(--accent-color);
             border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            animation: spin 1s linear infinite;
+            width: 48px;
+            height: 48px;
+            animation: spin 0.8s linear infinite;
         }
 
         @keyframes spin {
@@ -649,8 +723,8 @@
     <!-- Page Header -->
     <div class="page-header">
         <div class="container">
-            <h1><i class="fas fa-palette me-3"></i>Choose Your Template</h1>
-            <p>Select a professionally designed template and create your perfect biodata</p>
+            <h1>Document Templates</h1>
+            <p>Select a professional template to create your document</p>
         </div>
     </div>
 
@@ -665,7 +739,7 @@
     <div class="loading-screen" id="loadingScreen">
         <div>
             <div class="spinner-large"></div>
-            <p class="text-center mt-3" style="color: #667eea; font-weight: 600;">Loading templates...</p>
+            <p class="text-center mt-3" style="color: var(--text-secondary); font-weight: 500; font-size: 13px;">Loading templates...</p>
         </div>
     </div>
 
