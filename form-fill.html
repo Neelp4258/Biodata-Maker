@@ -715,7 +715,28 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
     <script>
+        // Firebase Configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDT2e0j-Nvd3weMZaCI7rCb2vJ3DwCdIrk",
+            authDomain: "dazzlohr.firebaseapp.com",
+            projectId: "dazzlohr",
+            storageBucket: "dazzlohr.firebasestorage.app",
+            messagingSenderId: "997294562239",
+            appId: "1:997294562239:web:e49d02aecd7b0aa99b9f0a",
+            measurementId: "G-PCN9GGF3DY"
+        };
+
+        // Initialize Firebase
+        if (!firebase.apps.length) {
+            firebase.initializeApp(firebaseConfig);
+        }
+        const db = firebase.firestore();
+
         let selectedTemplate = null;
         let templateHTML = '';
 
@@ -801,6 +822,7 @@
         }
 
         // Setup form listeners
+        let autoSaveTimer = null;
         function setupFormListeners() {
             const form = document.getElementById('biodataForm');
             const inputs = form.querySelectorAll('input, textarea');
@@ -809,6 +831,12 @@
                 input.addEventListener('input', () => {
                     updateProgress();
                     updatePreview();
+
+                    // Auto-save to Firebase with debounce (2 seconds) - silent mode
+                    clearTimeout(autoSaveTimer);
+                    autoSaveTimer = setTimeout(() => {
+                        saveData(false); // false = don't show notification for auto-save
+                    }, 2000);
                 });
             });
 
@@ -1282,32 +1310,99 @@
             `;
         }
 
-        // Save data to localStorage
-        function saveData() {
-            const formData = getFormData();
-            localStorage.setItem('biodataFormData', JSON.stringify(formData));
-            showAlert('Your progress has been saved successfully!', 'success');
+        // Save data to localStorage and Firebase
+        async function saveData(showNotification = true) {
+            try {
+                const formData = getFormData();
+
+                // Save to localStorage for backup
+                localStorage.setItem('biodataFormData', JSON.stringify(formData));
+
+                // Get current user from localStorage
+                const currentUserStr = localStorage.getItem('currentUser');
+                if (currentUserStr) {
+                    const currentUser = JSON.parse(currentUserStr);
+                    const userId = currentUser.uid;
+
+                    // Save to Firebase Firestore CustomerData collection
+                    await db.collection('CustomerData').doc(userId).set({
+                        formData: formData,
+                        lastUpdated: firebase.firestore.FieldValue.serverTimestamp(),
+                        userEmail: currentUser.email,
+                        userName: currentUser.name
+                    }, { merge: true });
+
+                    if (showNotification) {
+                        showAlert('Your progress has been saved to cloud successfully!', 'success');
+                    }
+                    console.log('Auto-saved to cloud at', new Date().toLocaleTimeString());
+                } else {
+                    if (showNotification) {
+                        showAlert('Your progress has been saved locally!', 'success');
+                    }
+                }
+            } catch (error) {
+                console.error('Error saving data:', error);
+                if (showNotification) {
+                    showAlert('Data saved locally. Cloud sync failed.', 'warning');
+                }
+            }
         }
 
-        // Load saved data
-        function loadSavedData() {
-            const savedData = localStorage.getItem('biodataFormData');
-            if (savedData) {
-                const data = JSON.parse(savedData);
-                Object.keys(data).forEach(key => {
-                    const element = document.getElementById(key);
-                    if (element) {
-                        // Skip if value is a placeholder
-                        const isPlaceholder = typeof data[key] === 'string' && data[key].startsWith('[') && data[key].endsWith(']');
-                        if (!isPlaceholder) {
-                            element.value = data[key];
-                        }
+        // Load saved data from Firebase or localStorage
+        async function loadSavedData() {
+            try {
+                // Get current user from localStorage
+                const currentUserStr = localStorage.getItem('currentUser');
+
+                if (currentUserStr) {
+                    const currentUser = JSON.parse(currentUserStr);
+                    const userId = currentUser.uid;
+
+                    // Try to load from Firebase first
+                    const doc = await db.collection('CustomerData').doc(userId).get();
+
+                    if (doc.exists) {
+                        const data = doc.data().formData;
+                        populateFormData(data);
+                        showAlert('Your saved data has been loaded from cloud!', 'success');
+                        return;
                     }
-                });
-                updateProgress();
-                updatePreview();
-                showAlert('Previous data loaded successfully!', 'info');
+                }
+
+                // Fallback to localStorage if Firebase fails or no data found
+                const savedData = localStorage.getItem('biodataFormData');
+                if (savedData) {
+                    const data = JSON.parse(savedData);
+                    populateFormData(data);
+                    showAlert('Previous data loaded from local storage!', 'info');
+                }
+            } catch (error) {
+                console.error('Error loading data from Firebase:', error);
+                // Fallback to localStorage
+                const savedData = localStorage.getItem('biodataFormData');
+                if (savedData) {
+                    const data = JSON.parse(savedData);
+                    populateFormData(data);
+                    showAlert('Previous data loaded from local storage!', 'info');
+                }
             }
+        }
+
+        // Helper function to populate form with data
+        function populateFormData(data) {
+            Object.keys(data).forEach(key => {
+                const element = document.getElementById(key);
+                if (element) {
+                    // Skip if value is a placeholder
+                    const isPlaceholder = typeof data[key] === 'string' && data[key].startsWith('[') && data[key].endsWith(']');
+                    if (!isPlaceholder) {
+                        element.value = data[key];
+                    }
+                }
+            });
+            updateProgress();
+            updatePreview();
         }
 
         // Generate PDF
