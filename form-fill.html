@@ -1024,6 +1024,20 @@
                 filledTemplate = filledTemplate.replace(regex, value || placeholder);
             }
 
+            // Hide family background section if all family data is empty
+            const hasFamilyData = data.fatherName || data.motherName || data.fatherOccupation || data.motherOccupation || data.address;
+            if (!hasFamilyData) {
+                // Remove or hide family sections by adding inline style to sections containing "Family" in title
+                // This works by replacing the section div opening tags that contain family-related content
+                filledTemplate = filledTemplate.replace(
+                    /(<div class="[^"]*(?:section-card|section|section-panel|glass-card|vintage-section|concrete-block|dreamy-card|content-section|tech-panel)[^"]*"[^>]*>[\s\S]*?(?:Family|FAMILY)[\s\S]*?<\/div>[\s\S]*?<\/div>)/gi,
+                    function(match) {
+                        // Add style="display:none" to the section div
+                        return match.replace(/^(<div [^>]*)(>)/, '$1 style="display:none !important"$2');
+                    }
+                );
+            }
+
             return filledTemplate;
         }
 
