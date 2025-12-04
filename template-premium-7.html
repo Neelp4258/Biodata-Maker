@@ -194,9 +194,11 @@
         }
 
         .info-item {
-            display: flex;
-            flex-direction: column;
-            gap:  1mm;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 5mm;
+            align-items: baseline;
+            margin-bottom: 3mm;
         }
 
         .info-label {
