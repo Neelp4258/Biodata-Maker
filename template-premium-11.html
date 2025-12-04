@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Gradient Professional - Premium Resume Template</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: white;
+            width: 210mm;
+            height: 297mm;
+            margin: 0 auto;
+            padding: 0;
+            color: #1e293b;
+        }
+
+        .container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gradient-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            padding: 45px 50px;
+            color: white;
+            position: relative;
+        }
+
+        .gradient-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><circle cx="200" cy="200" r="150" fill="rgba(255,255,255,0.1)"/><circle cx="800" cy="100" r="100" fill="rgba(255,255,255,0.05)"/><circle cx="900" cy="600" r="120" fill="rgba(255,255,255,0.08)"/></svg>');
+            opacity: 0.5;
+        }
+
+        .name-section {
+            position: relative;
+            z-index: 2;
+        }
+
+        .name {
+            font-size: 44px;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .title {
+            font-size: 17px;
+            font-weight: 400;
+            opacity: 0.95;
+            letter-spacing: 0.5px;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            padding: 30px 50px;
+            background: linear-gradient(to right, #f8fafc 0%, #ffffff 100%);
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .contact-icon {
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 38% 62%;
+            min-height: calc(297mm - 200px);
+        }
+
+        .sidebar {
+            background: linear-gradient(to bottom, #f8fafc 0%, #f1f5f9 100%);
+            padding: 35px 30px;
+            border-right: 1px solid #e2e8f0;
+        }
+
+        .main-content {
+            padding: 35px 40px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 15px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 18px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e2e8f0;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .info-item {
+            margin-bottom: 18px;
+        }
+
+        .info-label {
+            font-size: 11px;
+            font-weight: 700;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
+
+        .info-value {
+            font-size: 13px;
+            font-weight: 500;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+        }
+
+        .timeline-item {
+            margin-bottom: 28px;
+            padding-left: 25px;
+            position: relative;
+            border-left: 2px solid #e2e8f0;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 5px;
+            width: 10px;
+            height: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 0 3px white, 0 0 0 4px #e2e8f0;
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
+        }
+
+        .timeline-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1e293b;
+        }
+
+        .timeline-duration {
+            font-size: 11px;
+            font-weight: 600;
+            color: #64748b;
+            background: #f1f5f9;
+            padding: 4px 10px;
+            border-radius: 12px;
+        }
+
+        .timeline-subtitle {
+            font-size: 14px;
+            font-weight: 600;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .timeline-description {
+            font-size: 13px;
+            color: #475569;
+            line-height: 1.8;
+        }
+
+        .profile-card {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+            padding: 18px;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+        }
+
+        @media print {
+            body {
+                width: 210mm;
+                height: 297mm;
+                margin: 0;
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="gradient-header">
+            <div class="name-section">
+                <div class="name">[Your Name]</div>
+                <div class="title">[Job Title]</div>
+            </div>
+        </div>
+
+        <div class="contact-grid">
+            <div class="contact-item">
+                <div class="contact-icon">📧</div>
+                <div>[Email Address]</div>
+            </div>
+            <div class="contact-item">
+                <div class="contact-icon">📱</div>
+                <div>[Phone Number]</div>
+            </div>
+            <div class="contact-item">
+                <div class="contact-icon">📍</div>
+                <div>[City, State]</div>
+            </div>
+            <div class="contact-item">
+                <div class="contact-icon">🌍</div>
+                <div>[Country]</div>
+            </div>
+        </div>
+
+        <div class="main-grid">
+            <div class="sidebar">
+                <div class="section">
+                    <div class="section-title">Personal Info</div>
+                    <div class="info-item">
+                        <div class="info-label">Date of Birth</div>
+                        <div class="info-value">[Date of Birth]</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-label">Age</div>
+                        <div class="info-value">[Age] years</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Skills</div>
+                    <div class="skill-tags">
+                        <div class="skill-tag">[Skills]</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Family</div>
+                    <div class="profile-card">
+                        <div class="info-item">
+                            <div class="info-label">Father's Name</div>
+                            <div class="info-value">[Father's Name]</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Father's Occupation</div>
+                            <div class="info-value">[Father's Occupation]</div>
+                        </div>
+                        <div class="info-item">
+                            <div class="info-label">Mother's Name</div>
+                            <div class="info-value">[Mother's Name]</div>
+                        </div>
+                        <div class="info-item" style="margin-bottom: 0;">
+                            <div class="info-label">Mother's Occupation</div>
+                            <div class="info-value">[Mother's Occupation]</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Address</div>
+                    <div class="info-value">[Address]</div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Hobbies</div>
+                    <div class="info-value">[Hobbies]</div>
+                </div>
+            </div>
+
+            <div class="main-content">
+                <div class="section">
+                    <div class="section-title">Education Background</div>
+                    <div class="timeline-item">
+                        <div class="timeline-header">
+                            <div class="timeline-title">[Educational Background]</div>
+                            <div class="timeline-duration">[Year]</div>
+                        </div>
+                        <div class="timeline-subtitle">[University]</div>
+                        <div class="timeline-description">[Field of Study]</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Professional Experience</div>
+                    <div class="timeline-item">
+                        <div class="timeline-header">
+                            <div class="timeline-title">[Job Title]</div>
+                            <div class="timeline-duration">[Duration]</div>
+                        </div>
+                        <div class="timeline-subtitle">[Company]</div>
+                        <div class="timeline-description">[Work Experience & Achievements]</div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="section-title">Additional Information</div>
+                    <div class="profile-card">
+                        <div class="info-value">[Additional Information]</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
