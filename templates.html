@@ -1106,8 +1106,23 @@
         function previewTemplate(file) {
             const modal = document.getElementById('previewModal');
             const frame = document.getElementById('previewFrame');
-            frame.src = file;
-            modal.classList.add('active');
+
+            // Add loading state
+            frame.style.background = '#f8fafc';
+            frame.src = '';
+
+            // Load template
+            setTimeout(() => {
+                frame.src = file;
+                modal.classList.add('active');
+            }, 100);
+
+            // Handle iframe load error
+            frame.onerror = function() {
+                console.error('Error loading template preview');
+                alert('Preview temporarily unavailable. Please select the template directly.');
+                closePreview();
+            };
         }
 
         // Close preview
@@ -1154,5 +1169,10 @@
             loadTemplates();
         });
     </script>
+
+    <!-- Admin Access (Hidden) -->
+    <div style="text-align: center; padding: 5px 0; opacity: 0.1;">
+        <a href="admin.html" style="font-size: 8px; color: #94a3b8; text-decoration: none;">•</a>
+    </div>
 </body>
 </html>

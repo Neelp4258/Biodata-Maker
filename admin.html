@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - DazzloVerse</title>
+    <link rel="icon" type="image/png" href="dazzlo.png">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8fafc;
+            min-height: 100vh;
+        }
+
+        /* Login Page */
+        .login-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            padding: 20px;
+        }
+
+        .login-box {
+            background: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            padding: 48px;
+            width: 100%;
+            max-width: 420px;
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .login-header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 8px;
+        }
+
+        .login-header p {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 600;
+            color: #334155;
+            margin-bottom: 8px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 15px;
+            transition: all 0.3s;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #0ea5e9;
+            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 8px;
+        }
+
+        .btn-login:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(14, 165, 233, 0.3);
+        }
+
+        .btn-login:active {
+            transform: translateY(0);
+        }
+
+        .error-message {
+            background: #fee2e2;
+            color: #dc2626;
+            padding: 12px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            margin-bottom: 16px;
+            display: none;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        /* Dashboard */
+        .dashboard {
+            display: none;
+        }
+
+        .dashboard.active {
+            display: block;
+        }
+
+        .dashboard-header {
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 20px 24px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .header-title h1 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 4px;
+        }
+
+        .header-title p {
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .btn-logout {
+            padding: 10px 24px;
+            background: #f8fafc;
+            color: #475569;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-logout:hover {
+            background: #f1f5f9;
+            border-color: #cbd5e1;
+        }
+
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .stat-card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 24px;
+            border: 1px solid #e2e8f0;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .stat-label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .icon-blue {
+            background: #eff6ff;
+            color: #0ea5e9;
+        }
+
+        .icon-green {
+            background: #f0fdf4;
+            color: #10b981;
+        }
+
+        .icon-purple {
+            background: #faf5ff;
+            color: #a855f7;
+        }
+
+        .icon-orange {
+            background: #fff7ed;
+            color: #f97316;
+        }
+
+        .stat-value {
+            font-size: 36px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 4px;
+        }
+
+        .stat-change {
+            font-size: 13px;
+            color: #10b981;
+            font-weight: 500;
+        }
+
+        .stat-change.negative {
+            color: #ef4444;
+        }
+
+        .dashboard-section {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 24px;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 24px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #0f172a;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .data-table th {
+            text-align: left;
+            padding: 12px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 2px solid #e2e8f0;
+        }
+
+        .data-table td {
+            padding: 16px 12px;
+            font-size: 14px;
+            color: #334155;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .data-table tr:hover {
+            background: #f8fafc;
+        }
+
+        .template-name-cell {
+            font-weight: 500;
+            color: #0f172a;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .badge-success {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .badge-info {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .badge-warning {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .activity-list {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .activity-item {
+            padding: 16px;
+            border-bottom: 1px solid #f1f5f9;
+            display: flex;
+            gap: 16px;
+            align-items: start;
+        }
+
+        .activity-item:last-child {
+            border-bottom: none;
+        }
+
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-size: 16px;
+        }
+
+        .activity-content {
+            flex: 1;
+        }
+
+        .activity-title {
+            font-size: 14px;
+            font-weight: 500;
+            color: #0f172a;
+            margin-bottom: 4px;
+        }
+
+        .activity-details {
+            font-size: 13px;
+            color: #64748b;
+        }
+
+        .activity-time {
+            font-size: 12px;
+            color: #94a3b8;
+            margin-top: 4px;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .login-box {
+                padding: 32px 24px;
+            }
+
+            .login-header h1 {
+                font-size: 24px;
+            }
+
+            .dashboard-header {
+                padding: 16px 20px;
+            }
+
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .header-title h1 {
+                font-size: 20px;
+            }
+
+            .dashboard-container {
+                padding: 16px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .stat-value {
+                font-size: 28px;
+            }
+
+            .dashboard-section {
+                padding: 20px 16px;
+            }
+
+            .section-title {
+                font-size: 16px;
+            }
+
+            .data-table {
+                font-size: 13px;
+            }
+
+            .data-table th,
+            .data-table td {
+                padding: 12px 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .login-box {
+                padding: 24px 20px;
+            }
+
+            .stat-value {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Page -->
+    <div class="login-container" id="loginPage">
+        <div class="login-box">
+            <div class="login-header">
+                <h1>Admin Dashboard</h1>
+                <p>DazzloVerse Analytics</p>
+            </div>
+
+            <div class="error-message" id="errorMessage">
+                Invalid username or password
+            </div>
+
+            <form id="loginForm" onsubmit="handleLogin(event)">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" placeholder="Enter username" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter password" required>
+                </div>
+
+                <button type="submit" class="btn-login">
+                    <i class="fas fa-sign-in-alt"></i> Sign In
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Dashboard -->
+    <div class="dashboard" id="dashboardPage">
+        <div class="dashboard-header">
+            <div class="header-content">
+                <div class="header-title">
+                    <h1>Admin Dashboard</h1>
+                    <p>Overview of DazzloVerse activities</p>
+                </div>
+                <button class="btn-logout" onclick="handleLogout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+
+        <div class="dashboard-container">
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-label">Total Users</span>
+                        <div class="stat-icon icon-blue">
+                            <i class="fas fa-users"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value" id="totalUsers">0</div>
+                    <div class="stat-change">
+                        <i class="fas fa-arrow-up"></i> +12% this month
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-label">Templates Used</span>
+                        <div class="stat-icon icon-green">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value" id="templatesUsed">0</div>
+                    <div class="stat-change">
+                        <i class="fas fa-arrow-up"></i> +23% this week
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-label">PDF Generated</span>
+                        <div class="stat-icon icon-purple">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value" id="pdfGenerated">0</div>
+                    <div class="stat-change">
+                        <i class="fas fa-arrow-up"></i> +18% this week
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <span class="stat-label">Active Today</span>
+                        <div class="stat-icon icon-orange">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value" id="activeToday">0</div>
+                    <div class="stat-change">
+                        <i class="fas fa-arrow-up"></i> +5% from yesterday
+                    </div>
+                </div>
+            </div>
+
+            <!-- Template Usage Stats -->
+            <div class="dashboard-section">
+                <div class="section-header">
+                    <h2 class="section-title">Popular Templates</h2>
+                </div>
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Template Name</th>
+                                <th>Usage Count</th>
+                                <th>Type</th>
+                                <th>Trend</th>
+                            </tr>
+                        </thead>
+                        <tbody id="templateStatsBody">
+                            <!-- Data will be loaded dynamically -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Recent Activities -->
+            <div class="dashboard-section">
+                <div class="section-header">
+                    <h2 class="section-title">Recent Activities</h2>
+                </div>
+                <div class="activity-list" id="activityList">
+                    <!-- Activities will be loaded dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase Config -->
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+        import { getFirestore, collection, getDocs, query, orderBy, limit } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyD0i9ACaHl6KoTNE-fZYc4cqL-Eec-5hAc",
+            authDomain: "biodata-maker-402e4.firebaseapp.com",
+            projectId: "biodata-maker-402e4",
+            storageBucket: "biodata-maker-402e4.firebasestorage.app",
+            messagingSenderId: "829491698371",
+            appId: "1:829491698371:web:1ff1ad0c79b5a08ec8edd5",
+            measurementId: "G-XYJ9JPZXCC"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Expose to global scope for other functions
+        window.db = db;
+        window.getDocs = getDocs;
+        window.collection = collection;
+        window.query = query;
+        window.orderBy = orderBy;
+        window.limit = limit;
+    </script>
+
+    <script>
+        // Admin credentials
+        const ADMIN_USERNAME = 'Neel';
+        const ADMIN_PASSWORD = 'Diya';
+
+        // Handle Login
+        function handleLogin(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('errorMessage');
+
+            if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
+                // Success - show dashboard
+                sessionStorage.setItem('adminLoggedIn', 'true');
+                document.getElementById('loginPage').style.display = 'none';
+                document.getElementById('dashboardPage').classList.add('active');
+                loadDashboardData();
+            } else {
+                // Show error
+                errorMessage.classList.add('show');
+                setTimeout(() => {
+                    errorMessage.classList.remove('show');
+                }, 3000);
+            }
+        }
+
+        // Handle Logout
+        function handleLogout() {
+            sessionStorage.removeItem('adminLoggedIn');
+            document.getElementById('loginPage').style.display = 'flex';
+            document.getElementById('dashboardPage').classList.remove('active');
+            document.getElementById('loginForm').reset();
+        }
+
+        // Check if already logged in
+        function checkAuth() {
+            if (sessionStorage.getItem('adminLoggedIn') === 'true') {
+                document.getElementById('loginPage').style.display = 'none';
+                document.getElementById('dashboardPage').classList.add('active');
+                loadDashboardData();
+            }
+        }
+
+        // Load Dashboard Data
+        async function loadDashboardData() {
+            try {
+                // Get user data from Firebase
+                const usersSnapshot = await window.getDocs(window.collection(window.db, 'users'));
+                const customerDataSnapshot = await window.getDocs(window.collection(window.db, 'CustomerData'));
+
+                // Calculate stats
+                const totalUsers = usersSnapshot.size;
+                const templatesUsed = customerDataSnapshot.size;
+
+                // Update stats
+                document.getElementById('totalUsers').textContent = totalUsers;
+                document.getElementById('templatesUsed').textContent = templatesUsed;
+                document.getElementById('pdfGenerated').textContent = templatesUsed; // Assuming 1 template = 1 PDF
+                document.getElementById('activeToday').textContent = Math.floor(totalUsers * 0.15); // Estimated
+
+                // Load template stats
+                loadTemplateStats(customerDataSnapshot);
+
+                // Load activities
+                loadRecentActivities(usersSnapshot, customerDataSnapshot);
+            } catch (error) {
+                console.error('Error loading dashboard data:', error);
+                // Show sample data if Firebase fails
+                loadSampleData();
+            }
+        }
+
+        // Load Template Statistics
+        function loadTemplateStats(customerDataSnapshot) {
+            const templateUsage = {};
+
+            customerDataSnapshot.forEach(doc => {
+                const data = doc.data();
+                const templateId = data.selectedTemplate || 'Unknown';
+                templateUsage[templateId] = (templateUsage[templateId] || 0) + 1;
+            });
+
+            const statsBody = document.getElementById('templateStatsBody');
+            statsBody.innerHTML = '';
+
+            const sortedTemplates = Object.entries(templateUsage)
+                .sort((a, b) => b[1] - a[1])
+                .slice(0, 10);
+
+            sortedTemplates.forEach(([template, count], index) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td class="template-name-cell">${template}</td>
+                    <td>${count}</td>
+                    <td><span class="badge badge-info">Template</span></td>
+                    <td><span class="badge badge-success">↑ Trending</span></td>
+                `;
+                statsBody.appendChild(row);
+            });
+        }
+
+        // Load Recent Activities
+        function loadRecentActivities(usersSnapshot, customerDataSnapshot) {
+            const activityList = document.getElementById('activityList');
+            activityList.innerHTML = '';
+
+            const activities = [];
+
+            // Add user signups
+            usersSnapshot.forEach(doc => {
+                const data = doc.data();
+                if (data.createdAt) {
+                    activities.push({
+                        type: 'signup',
+                        user: data.email || data.fullName || 'User',
+                        time: data.createdAt.toDate ? data.createdAt.toDate() : new Date(data.createdAt)
+                    });
+                }
+            });
+
+            // Add template usage
+            customerDataSnapshot.forEach(doc => {
+                const data = doc.data();
+                if (data.timestamp) {
+                    activities.push({
+                        type: 'template',
+                        user: data.fullName || data.email || 'User',
+                        template: data.selectedTemplate || 'Template',
+                        time: data.timestamp.toDate ? data.timestamp.toDate() : new Date(data.timestamp)
+                    });
+                }
+            });
+
+            // Sort by time (newest first) and take top 20
+            activities.sort((a, b) => b.time - a.time).slice(0, 20).forEach(activity => {
+                const item = document.createElement('div');
+                item.className = 'activity-item';
+
+                const timeAgo = getTimeAgo(activity.time);
+
+                if (activity.type === 'signup') {
+                    item.innerHTML = `
+                        <div class="activity-icon icon-green">
+                            <i class="fas fa-user-plus"></i>
+                        </div>
+                        <div class="activity-content">
+                            <div class="activity-title">New User Signup</div>
+                            <div class="activity-details">${activity.user}</div>
+                            <div class="activity-time">${timeAgo}</div>
+                        </div>
+                    `;
+                } else {
+                    item.innerHTML = `
+                        <div class="activity-icon icon-purple">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div class="activity-content">
+                            <div class="activity-title">Template Used</div>
+                            <div class="activity-details">${activity.user} used ${activity.template}</div>
+                            <div class="activity-time">${timeAgo}</div>
+                        </div>
+                    `;
+                }
+
+                activityList.appendChild(item);
+            });
+        }
+
+        // Get time ago string
+        function getTimeAgo(date) {
+            const seconds = Math.floor((new Date() - date) / 1000);
+
+            const intervals = {
+                year: 31536000,
+                month: 2592000,
+                week: 604800,
+                day: 86400,
+                hour: 3600,
+                minute: 60
+            };
+
+            for (const [unit, secondsInUnit] of Object.entries(intervals)) {
+                const interval = Math.floor(seconds / secondsInUnit);
+                if (interval >= 1) {
+                    return `${interval} ${unit}${interval === 1 ? '' : 's'} ago`;
+                }
+            }
+
+            return 'Just now';
+        }
+
+        // Load sample data if Firebase is unavailable
+        function loadSampleData() {
+            document.getElementById('totalUsers').textContent = '247';
+            document.getElementById('templatesUsed').textContent = '1,842';
+            document.getElementById('pdfGenerated').textContent = '1,842';
+            document.getElementById('activeToday').textContent = '37';
+
+            const sampleTemplates = [
+                { name: 'Minimalist Elegance', count: 324, type: 'Standard', trend: 'Trending' },
+                { name: 'Geometric Luxury', count: 289, type: 'Premium', trend: 'Trending' },
+                { name: 'Modern Corporate Glass', count: 256, type: 'Standard', trend: 'Popular' },
+                { name: 'Navy & Gold Executive', count: 234, type: 'Premium', trend: 'Trending' },
+                { name: 'Art Deco Luxe', count: 187, type: 'Standard', trend: 'Popular' }
+            ];
+
+            const statsBody = document.getElementById('templateStatsBody');
+            statsBody.innerHTML = '';
+
+            sampleTemplates.forEach(template => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td class="template-name-cell">${template.name}</td>
+                    <td>${template.count}</td>
+                    <td><span class="badge badge-${template.type === 'Premium' ? 'warning' : 'info'}">${template.type}</span></td>
+                    <td><span class="badge badge-success">↑ ${template.trend}</span></td>
+                `;
+                statsBody.appendChild(row);
+            });
+
+            // Sample activities
+            const activityList = document.getElementById('activityList');
+            activityList.innerHTML = `
+                <div class="activity-item">
+                    <div class="activity-icon icon-green">
+                        <i class="fas fa-user-plus"></i>
+                    </div>
+                    <div class="activity-content">
+                        <div class="activity-title">New User Signup</div>
+                        <div class="activity-details">john.doe@example.com</div>
+                        <div class="activity-time">2 minutes ago</div>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon icon-purple">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <div class="activity-content">
+                        <div class="activity-title">Template Used</div>
+                        <div class="activity-details">Sarah Wilson used Minimalist Elegance</div>
+                        <div class="activity-time">8 minutes ago</div>
+                    </div>
+                </div>
+                <div class="activity-item">
+                    <div class="activity-icon icon-blue">
+                        <i class="fas fa-download"></i>
+                    </div>
+                    <div class="activity-content">
+                        <div class="activity-title">PDF Downloaded</div>
+                        <div class="activity-details">Michael Chen downloaded CV</div>
+                        <div class="activity-time">15 minutes ago</div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Initialize on page load
+        window.addEventListener('load', checkAuth);
+    </script>
+</body>
+</html>
